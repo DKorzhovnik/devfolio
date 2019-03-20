@@ -1,0 +1,58 @@
+2019-03-17 14:42:13.509 +01:00 [INF] Starting IdentityServer4 version 2.3.2.0
+2019-03-17 14:42:15.883 +01:00 [INF] Using the default authentication scheme Community for IdentityServer
+2019-03-17 14:42:15.886 +01:00 [ERR] Authentication scheme Community is configured for IdentityServer, but it is not a scheme that supports signin (like cookies). Either configure the default authentication scheme with cookies or set the CookieAuthenticationScheme on the IdentityServerOptions.
+2019-03-17 14:42:15.889 +01:00 [DBG] Using Community as default ASP.NET Core scheme for authentication
+2019-03-17 14:42:15.892 +01:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for sign-in
+2019-03-17 14:42:15.904 +01:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for sign-out
+2019-03-17 14:42:15.906 +01:00 [DBG] Using Community as default ASP.NET Core scheme for challenge
+2019-03-17 14:42:15.909 +01:00 [DBG] Using Community as default ASP.NET Core scheme for forbid
+2019-03-17 14:43:42.532 +01:00 [DBG] Found ["openid","profile","admin_ui_profile","admin_ui_public","admin_api","admin_ui_webhooks"] as all scopes in database
+2019-03-17 14:46:45.348 +01:00 [DBG] Found ["openid","profile","admin_ui_profile","admin_ui_public","admin_api","admin_ui_webhooks"] as all scopes in database
+2019-03-17 14:59:44.998 +01:00 [INF] Starting IdentityServer4 version 2.3.2.0
+2019-03-17 14:59:47.847 +01:00 [INF] Using the default authentication scheme Community for IdentityServer
+2019-03-17 14:59:47.850 +01:00 [ERR] Authentication scheme Community is configured for IdentityServer, but it is not a scheme that supports signin (like cookies). Either configure the default authentication scheme with cookies or set the CookieAuthenticationScheme on the IdentityServerOptions.
+2019-03-17 14:59:47.854 +01:00 [DBG] Using Community as default ASP.NET Core scheme for authentication
+2019-03-17 14:59:47.857 +01:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for sign-in
+2019-03-17 14:59:47.860 +01:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for sign-out
+2019-03-17 14:59:47.870 +01:00 [DBG] Using Community as default ASP.NET Core scheme for challenge
+2019-03-17 14:59:47.873 +01:00 [DBG] Using Community as default ASP.NET Core scheme for forbid
+2019-03-17 15:00:44.203 +01:00 [DBG] 0 persisted grants found for Community
+2019-03-17 15:01:01.615 +01:00 [DBG] Found ["openid","profile","admin_ui_profile","admin_ui_public","admin_api","admin_ui_webhooks"] as all scopes in database
+2019-03-17 15:04:19.367 +01:00 [WRN] Connection processing ended abnormally.
+System.Net.Sockets.SocketException (22): Invalid argument
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketAwaitableEventArgs.<GetResult>g__ThrowSocketException|7_0(SocketError e)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketAwaitableEventArgs.GetResult()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketConnection.ProcessReceives()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketConnection.DoReceive()
+   at System.IO.Pipelines.PipeCompletion.ThrowLatchedException()
+   at System.IO.Pipelines.Pipe.GetReadResult(ReadResult& result)
+   at System.IO.Pipelines.Pipe.GetReadAsyncResult()
+   at System.IO.Pipelines.Pipe.DefaultPipeReader.GetResult(Int16 token)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)
+2019-03-17 15:04:26.133 +01:00 [DBG] Found ["openid","profile","admin_ui_profile","admin_ui_public","admin_api","admin_ui_webhooks"] as all scopes in database
+2019-03-17 15:08:30.989 +01:00 [WRN] Connection processing ended abnormally.
+System.Net.Sockets.SocketException (22): Invalid argument
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketAwaitableEventArgs.<GetResult>g__ThrowSocketException|7_0(SocketError e)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketAwaitableEventArgs.GetResult()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketConnection.ProcessReceives()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketConnection.DoReceive()
+   at System.IO.Pipelines.PipeCompletion.ThrowLatchedException()
+   at System.IO.Pipelines.Pipe.GetReadResult(ReadResult& result)
+   at System.IO.Pipelines.Pipe.GetReadAsyncResult()
+   at System.IO.Pipelines.Pipe.DefaultPipeReader.GetResult(Int16 token)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)
+2019-03-17 15:11:02.294 +01:00 [WRN] Connection processing ended abnormally.
+System.Net.Sockets.SocketException (22): Invalid argument
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketAwaitableEventArgs.<GetResult>g__ThrowSocketException|7_0(SocketError e)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketAwaitableEventArgs.GetResult()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketConnection.ProcessReceives()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketConnection.DoReceive()
+   at System.IO.Pipelines.PipeCompletion.ThrowLatchedException()
+   at System.IO.Pipelines.Pipe.GetReadResult(ReadResult& result)
+   at System.IO.Pipelines.Pipe.GetReadAsyncResult()
+   at System.IO.Pipelines.Pipe.DefaultPipeReader.GetResult(Int16 token)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)
+2019-03-17 15:31:54.537 +01:00 [DBG] Found ["openid","profile","admin_ui_profile","admin_ui_public","admin_api","admin_ui_webhooks"] as all scopes in database

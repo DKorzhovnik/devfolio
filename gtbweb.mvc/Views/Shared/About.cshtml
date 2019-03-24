@@ -1,6 +1,9 @@
  @{
     ViewData["Title"] = "About";
 }
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
   <section id="about" class="about-mf sect-pt4 route">
     <div class="container">
       <div class="row">
@@ -11,14 +14,14 @@
                 <div class="row">
                   <div class="col-sm-6 col-md-5">
                     <div class="about-img">
-                      <img src="~/img/testimonial-2.jpg" class="img-fluid rounded b-shadow-a" alt="">
+                      <img src= @ViewBag.profileDetails.Image class="img-fluid rounded b-shadow-a" alt="">
                     </div>
                   </div>
                   <div class="col-sm-6 col-md-7">
                     <div class="about-info">
-                      <p><span class="title-s">Name: </span> <span>Morgan Freeman</span></p>
+                      <p><span class="title-s">Name: </span> <span>@ViewBag.profileDetails.Designation</span></p>
                       <p><span class="title-s">Profile: </span> <span>full stack developer</span></p>
-                      <p><span class="title-s">Email: </span> <span>contact@example.com</span></p>
+                      <p><span class="title-s">Email: </span> <span>@User.Identity.Name</span></p>
                       <p><span class="title-s">Phone: </span> <span>(617) 557-0089</span></p>
                     </div>
                   </div>

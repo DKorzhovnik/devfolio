@@ -9,6 +9,11 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using gtbweb.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using System.Data.Entity;
 
 namespace gtbweb.Areas.Identity.Pages.Account
 {
@@ -19,22 +24,26 @@ namespace gtbweb.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly AboutDbContext _theContext;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            AboutDbContext theContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _theContext = theContext;
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
-
+        
+        
         public string ReturnUrl { get; set; }
 
         public class InputModel
@@ -54,6 +63,22 @@ namespace gtbweb.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Display(Name = "Confirm About")]
+            public string About { get; set; }
+
+
+
+            [Display(Name = "Confirm Image")]
+            public string Image { get; set; }
+
+
+             [Display(Name = "Confirm RegistrationDate")]
+             public DateTime RegistrationDate { get; set; }
+
+            [Display(Name = "Confirm Designation")]
+            public string Designation { get; set; }
+
         }
 
         public void OnGet(string returnUrl = null)
@@ -65,7 +90,17 @@ namespace gtbweb.Areas.Identity.Pages.Account
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
-            {
+            {   
+                
+
+            
+                var profile= new Profile();
+                  profile.About=Input.About;
+                  profile.Image=Input.Image;
+                  profile.RegistrationDate=Input.RegistrationDate;
+                  profile.Designation=Input.Designation;
+                  _theContext.Profiles.Add(profile);
+                  _theContext.SaveChanges();
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)

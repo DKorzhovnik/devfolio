@@ -13408,9 +13408,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/mnt/c/users/olukowi/gtbweb/gtbweb.mvc/gtbweb.csproj",
-      "projectName": "gtbweb",
-      "projectPath": "/mnt/c/users/olukowi/gtbweb/gtbweb.mvc/gtbweb.csproj",
+      "projectUniqueName": "/mnt/c/users/olukowi/gtbweb/gtbweb.mvc/gtbweb.mvc.csproj",
+      "projectName": "gtbweb.mvc",
+      "projectPath": "/mnt/c/users/olukowi/gtbweb/gtbweb.mvc/gtbweb.mvc.csproj",
       "packagesPath": "/home/kowi/.nuget/packages/",
       "outputPath": "/mnt/c/users/olukowi/gtbweb/gtbweb.mvc/obj/",
       "projectStyle": "PackageReference",

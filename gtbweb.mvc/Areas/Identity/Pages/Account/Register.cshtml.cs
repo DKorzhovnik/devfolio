@@ -84,6 +84,7 @@ namespace gtbweb.Areas.Identity.Pages.Account
         public void OnGet(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
+            
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)

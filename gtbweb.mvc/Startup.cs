@@ -49,6 +49,8 @@ namespace gtbweb
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.BuildServiceProvider()
             .GetService<Areas.Identity.Pages.Account.RegisterModel>();
+            services.BuildServiceProvider()
+            .GetService<gtbweb.Controllers.AboutController>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

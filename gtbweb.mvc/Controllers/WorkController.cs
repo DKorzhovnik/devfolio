@@ -2,21 +2,43 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using gtbweb.Models;
+using gtbweb.Services;
+using System.Linq;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
 
 namespace gtbweb.Controllers
 {
     public class WorkController : Controller
     {
+        
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private IDatabaseService  _dataservice;
+        
+         public WorkController(IDatabaseService  dataservice,UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager)
+        {
+               _dataservice = dataservice; 
+               _userManager = userManager;
+               _signInManager = signInManager;
+                   
+        }
+        [NoDirectAccess]
         public IActionResult Index()
         {
             return View();
         }
-
+        [NoDirectAccess]
         public IActionResult Work()
         {
+             var service =  _dataservice.GetPortfolio(_userManager.GetUserId(User));
+                ViewBag.PortfolioDetails = service;
             return View();
         }
 

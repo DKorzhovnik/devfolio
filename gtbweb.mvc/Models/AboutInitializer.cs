@@ -20,8 +20,8 @@ namespace gtbweb.Models
             AboutDbContext context = serviceScope.ServiceProvider.GetRequiredService<AboutDbContext>();
             var profiles = new List<Profile>
             {
-            new Profile{UserID=1055,About="Alex",Image="/img/testimonial-2.jpg", RegistrationDate=DateTime.Parse("2005-09-01"),Designation="FrontEnd"},
-            new Profile{UserID=1040,About="Alexander",Image="/img/testimonial-2.jpg", RegistrationDate=DateTime.Parse("2007-02-07"),Designation="Backend Developer"}
+            new Profile{UserID="1055",About="Alex",Image="/img/testimonial-2.jpg", RegistrationDate=DateTime.Parse("2005-09-01"),Designation="FrontEnd"},
+            new Profile{UserID="1040",About="Alexander",Image="/img/testimonial-2.jpg", RegistrationDate=DateTime.Parse("2007-02-07"),Designation="Backend Developer"}
             };
 
             profiles.ForEach(s => context.Profiles.Add(s));
@@ -35,8 +35,8 @@ namespace gtbweb.Models
             context.SaveChanges();
             var proficiencies = new List<Proficiency>
             {
-            new Proficiency{ProfileID=8,SkillID=1052,PercentageScore=0},
-            new Proficiency{ProfileID=14,SkillID=1053,PercentageScore=100},
+            new Proficiency{ProfileID=13,SkillID=11,PercentageScore=0},
+            new Proficiency{ProfileID=14,SkillID=12,PercentageScore=100},
             };
             proficiencies.ForEach(s => context.Proficiencies.Add(s));
             context.SaveChanges();

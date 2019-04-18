@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using gtbweb.Data;
 using gtbweb.Models;
+using gtbweb.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -35,11 +36,18 @@ namespace gtbweb
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
+                    services.AddDbContext<ServiceDbContext>(options =>
+                options.UseSqlite(
+                    Configuration.GetConnectionString("DefaultConnection")));
                     services.AddDbContext<AboutDbContext>(options =>
+                options.UseSqlite(
+                    Configuration.GetConnectionString("DefaultConnection")));
+                     services.AddDbContext<BlogDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
@@ -49,8 +57,13 @@ namespace gtbweb
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.BuildServiceProvider()
             .GetService<Areas.Identity.Pages.Account.RegisterModel>();
-            services.BuildServiceProvider()
-            .GetService<gtbweb.Controllers.AboutController>();
+            //services.BuildServiceProvider().GetService<gtbweb.Controllers.AboutController>();
+            //services.BuildServiceProvider().GetService<gtbweb.Services.DatabaseService>();
+            services.AddScoped<IDatabaseService, DatabaseService>();
+             services.AddScoped<IEmailSender, EmailSender>();
+             
+            
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,7 +86,7 @@ namespace gtbweb
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-             AboutInitializer.Seed(app);
+           // AboutInitializer.Seed(app);
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

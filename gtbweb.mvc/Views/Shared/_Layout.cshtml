@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -21,6 +25,7 @@
   <link href="~/lib/animate/animate.min.css" rel="stylesheet">
   <link href="~/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="~/lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
   <link href="~/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
@@ -49,13 +54,17 @@
         <span></span>
         <span></span>
       </button>
+              @if (SignInManager.IsSignedIn(User))
+{
       <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
         <ul class="navbar-nav flex-grow-1">
+
+          
           <li class="nav-item">
-            <a class="nav-link js-scroll"  asp-area="" asp-controller="Services" asp-action="Services">Services</a>
+            <a class="nav-link js-scroll"  asp-area="" asp-controller="About" asp-action="About">My Portfolio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll"  asp-area="" asp-controller="About" asp-action="About">About</a>
+            <a class="nav-link js-scroll"  asp-area="" asp-controller="Service" asp-action="Service">Services</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll"  asp-area="" asp-controller="Work" asp-action="Work">Work</a>
@@ -66,9 +75,19 @@
           <li class="nav-item">
             <a class="nav-link js-scroll"  asp-area="" asp-controller="Contact" asp-action="Contact">Contact</a>
           </li>
+
         </ul>
         <partial name="_LoginPartial" />
       </div>
+}
+else
+{
+    <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
+        <ul class="navbar-nav flex-grow-1">
+        </ul>
+        <partial name="_LoginPartial" />
+      </div>
+}
     </div>
   </nav>
         

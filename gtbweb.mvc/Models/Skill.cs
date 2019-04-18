@@ -10,7 +10,7 @@ namespace gtbweb.Models
         public string Title { get; set; }
         
         public virtual ICollection<Proficiency> Proficiencies { get; set; }
-
+        
      
     }
 }

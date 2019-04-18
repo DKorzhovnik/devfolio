@@ -17,12 +17,15 @@ body {
 h1,
 h2,
 h3,
-h4,
+
 h5,
 h6 {
   color: #1e1e1e;
 }
-
+h4
+{
+  color: #f5f5f5;
+}
 a {
   color: #1e1e1e;
   transition: all 0.5s ease-in-out;

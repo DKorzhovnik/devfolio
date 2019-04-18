@@ -6,56 +6,42 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using gtbweb.Models;
+using gtbweb.Services;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
 
 namespace gtbweb.Controllers
 {
     
     public class AboutController : Controller
     {
-        private readonly AboutDbContext  _theContext;
-        public AboutController(AboutDbContext theContext)
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private IDatabaseService  _dataservice;
+        
+        public AboutController(IDatabaseService  dataservice,UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager)
         {
-               _theContext = theContext;      
+               _dataservice = dataservice; 
+               _userManager = userManager;
+               _signInManager = signInManager;
+                   
         }
+        [NoDirectAccess]
         public IActionResult Index()
         {
             return View();
         }
-
+         
+        [NoDirectAccess] 
         public async Task<IActionResult> About()
         {
  
-                var pi =  _theContext.Profiles.Find(7);
-                               
-                                
-                                        
-                //you can search database with person id 
-                Profile p = new Profile();
-                p.Designation = "FirstName";
-                p.Image= "/img/testimonial-2.jpg";
-                p.RegistrationDate =  DateTime.Parse("2005-09-01");
-                p.UserID=125;
-                p.About="hhjhjhjh";
+                var profile =  _dataservice.GetProfile(_userManager.GetUserId(User));
+                ViewBag.ProfileDetails = profile; 
 
-
-
-            // Dictionary<string, string> profileDetails = new Dictionary<string, string>();
-                
-
-            //  foreach (PropertyInfo prop in p.GetType().GetProperties())
-                //{
-
-                //  var propName = prop.Name;
-                    //var propValue = prop.GetValue(p, null);
-                    //profileDetails.Add(propName.ToString(),propValue.ToString());
-
-                //}
-                ViewBag.profileDetails = pi; 
-                //profileDetails;
-            
                     return View();
         }
 

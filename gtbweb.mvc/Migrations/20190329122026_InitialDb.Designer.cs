@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using gtbweb.Models;
 
-namespace gtbweb.Migrations
+namespace gtbweb.mvc.Migrations
 {
     [DbContext(typeof(AboutDbContext))]
-    [Migration("20190323104716_Initial")]
-    partial class Initial
+    [Migration("20190329122026_InitialDb")]
+    partial class InitialDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,7 +51,7 @@ namespace gtbweb.Migrations
 
                     b.Property<DateTime>("RegistrationDate");
 
-                    b.Property<int>("UserID");
+                    b.Property<string>("UserID");
 
                     b.HasKey("ProfileID");
 

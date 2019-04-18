@@ -10,79 +10,49 @@
               Blog
             </h3>
             <p class="subtitle-a">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+             @ViewBag.BlogCollection.Slogan
             </p>
             <div class="line-mf"></div>
           </div>
         </div>
       </div>
       <div class="row">
+      @foreach(var x in @ViewBag.BlogCollection.BlogView)
+      {
         <div class="col-md-4">
           <div class="card card-blog">
             <div class="card-img">
-              <a href="blog-single.html"><img src="~/img/post-1.jpg" alt="" class="img-fluid"></a>
+              <a class="nav-link js-scroll"  asp-area="" asp-controller="Page" asp-action="Page"><img src=@x.BlogImage alt="" class="img-fluid"></a>
             </div>
             <div class="card-body">
               <div class="card-category-box">
                 <div class="card-category">
-                  <h6 class="category">Travel</h6>
+                  <h6 class="category">@x.PageTag</h6>
                 </div>
               </div>
-              <h3 class="card-title"><a href="blog-single.html">See more ideas about Travel</a></h3>
+              <h3 class="card-title"><a class="nav-link js-scroll"  asp-area="" asp-controller="Page" asp-action="Page">@x.Title</a></h3>
               <p class="card-description">
-                Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
-                a pellentesque nec,
-                egestas non nisi.
+              @x.Text
               </p>
             </div>
             <div class="card-footer">
               <div class="post-author">
                 <a href="#">
                   <img src="~/img/testimonial-2.jpg" alt="" class="avatar rounded-circle">
-                  <span class="author">Morgan Freeman</span>
+                  <span class="author">@x.FullName</span>
                 </a>
               </div>
               <div class="post-date">
-                <span class="ion-ios-clock-outline"></span> 10 min
+                <span class="ion-ios-clock-outline"></span> @x.ReadTime min
               </div>
             </div>
           </div>
         </div>
+    }
         <div class="col-md-4">
           <div class="card card-blog">
             <div class="card-img">
-              <a href="blog-single.html"><img src="~/img/post-2.jpg" alt="" class="img-fluid"></a>
-            </div>
-            <div class="card-body">
-              <div class="card-category-box">
-                <div class="card-category">
-                  <h6 class="category">Web Design</h6>
-                </div>
-              </div>
-              <h3 class="card-title"><a href="blog-single.html">See more ideas about Travel</a></h3>
-              <p class="card-description">
-                Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
-                a pellentesque nec,
-                egestas non nisi.
-              </p>
-            </div>
-            <div class="card-footer">
-              <div class="post-author">
-                <a href="#">
-                  <img src="~/img/testimonial-2.jpg" alt="" class="avatar rounded-circle">
-                  <span class="author">Morgan Freeman</span>
-                </a>
-              </div>
-              <div class="post-date">
-                <span class="ion-ios-clock-outline"></span> 10 min
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card card-blog">
-            <div class="card-img">
-              <a href="blog-single.html"><img src="~/img/post-3.jpg" alt="" class="img-fluid"></a>
+              <a class="nav-link js-scroll"  asp-area="" asp-controller="Page" asp-action="Page"><img src="~/img/post-2.jpg" alt="" class="img-fluid"></a>
             </div>
             <div class="card-body">
               <div class="card-category-box">
@@ -90,7 +60,7 @@
                   <h6 class="category">Web Design</h6>
                 </div>
               </div>
-              <h3 class="card-title"><a href="blog-single.html">See more ideas about Travel</a></h3>
+              <h3 class="card-title"><a class="nav-link js-scroll"  asp-area="" asp-controller="Page" asp-action="Page">See more ideas about Travel</a></h3>
               <p class="card-description">
                 Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
                 a pellentesque nec,
@@ -110,6 +80,7 @@
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </section>

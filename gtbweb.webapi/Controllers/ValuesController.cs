@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using gtbweb.Mvc;
+using gtbweb.Models;
+using gtbweb.Services;
 
 namespace gtbweb.webapi.Controllers
 {
@@ -11,12 +12,20 @@ namespace gtbweb.webapi.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private IDatabaseService _dataservice;
+        public ValuesController(IDatabaseService dataservice)
+        {
+              _dataservice= dataservice;      
+        }
+
         
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+             var pi =  _dataservice.GetProfile(7);
+
+            return new string[] { pi.Designation, pi.About };
         }
 
         // GET api/values/5

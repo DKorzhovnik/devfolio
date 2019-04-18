@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using gtbweb.Models;
 
-namespace gtbweb.Migrations
+namespace gtbweb.mvc.Migrations
 {
     [DbContext(typeof(AboutDbContext))]
     partial class AboutDbContextModelSnapshot : ModelSnapshot
@@ -49,7 +49,7 @@ namespace gtbweb.Migrations
 
                     b.Property<DateTime>("RegistrationDate");
 
-                    b.Property<int>("UserID");
+                    b.Property<string>("UserID");
 
                     b.HasKey("ProfileID");
 

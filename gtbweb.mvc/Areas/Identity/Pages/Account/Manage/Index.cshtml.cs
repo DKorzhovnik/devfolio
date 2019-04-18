@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
+//using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using gtbweb.Services;
+using gtbweb.Models;
 
 namespace gtbweb.Areas.Identity.Pages.Account.Manage
 {
@@ -97,7 +99,8 @@ namespace gtbweb.Areas.Identity.Pages.Account.Manage
                 }
             }
 
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+           // var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var phoneNumber =  _emailSender.Getsend();
             if (Input.PhoneNumber != phoneNumber)
             {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);

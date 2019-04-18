@@ -2,7 +2,7 @@
     ViewData["Title"] = "Work";
 }
  
-<div class="section-counter paralax-mf bg-image" style="background-image: url(~/img/counters-bg.jpg)">
+<div class="section-counter paralax-mf bg-image" style="background-image: url(/img/counters-bg.jpg)">
     <div class="overlay-mf"></div>
     <div class="container">
       <div class="row">
@@ -12,7 +12,7 @@
               <span class="ico-circle"><i class="ion-checkmark-round"></i></span>
             </div>
             <div class="counter-num">
-              <p class="counter">450</p>
+              <p class="counter">@ViewBag.PortfolioDetails.WorksCompleted</p>
               <span class="counter-text">WORKS COMPLETED</span>
             </div>
           </div>
@@ -23,7 +23,7 @@
               <span class="ico-circle"><i class="ion-ios-calendar-outline"></i></span>
             </div>
             <div class="counter-num">
-              <p class="counter">15</p>
+              <p class="counter">@ViewBag.PortfolioDetails.YearsOfExperience</p>
               <span class="counter-text">YEARS OF EXPERIENCE</span>
             </div>
           </div>
@@ -34,7 +34,7 @@
               <span class="ico-circle"><i class="ion-ios-people"></i></span>
             </div>
             <div class="counter-num">
-              <p class="counter">550</p>
+              <p class="counter">@ViewBag.PortfolioDetails.TotalClients</p>
               <span class="counter-text">TOTAL CLIENTS</span>
             </div>
           </div>
@@ -45,7 +45,7 @@
               <span class="ico-circle"><i class="ion-ribbon-a"></i></span>
             </div>
             <div class="counter-num">
-              <p class="counter">36</p>
+              <p class="counter">@ViewBag.PortfolioDetails.AwardsWon</p>
               <span class="counter-text">AWARD WON</span>
             </div>
           </div>
@@ -64,25 +64,27 @@
               Portfolio
             </h3>
             <p class="subtitle-a">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              @ViewBag.PortfolioDetails.Slogan
             </p>
             <div class="line-mf"></div>
           </div>
         </div>
       </div>
       <div class="row">
+      @foreach(var x in @ViewBag.PortfolioDetails.Portfolio )
+      {
         <div class="col-md-4">
           <div class="work-box">
-            <a href="img/work-1.jpg" data-lightbox="gallery-mf">
+            <a href=@x.PortfolioImage data-lightbox="gallery-mf">
               <div class="work-img">
-                <img src="~/img/work-1.jpg" alt="" class="img-fluid">
+                <img src=@x.PortfolioImage alt="" class="img-fluid">
               </div>
               <div class="work-content">
                 <div class="row">
                   <div class="col-sm-8">
-                    <h2 class="w-title">Lorem impsum dolor</h2>
+                    <h2 class="w-title">@x.Title</h2>
                     <div class="w-more">
-                      <span class="w-ctegory">Web Design</span> / <span class="w-date">18 Sep. 2018</span>
+                      <span class="w-ctegory">@x.Tag</span> / <span class="w-date">@x.CreationDate</span>
                     </div>
                   </div>
                   <div class="col-sm-4">
@@ -95,9 +97,10 @@
             </a>
           </div>
         </div>
+      }
         <div class="col-md-4">
           <div class="work-box">
-            <a href="img/work-2.jpg" data-lightbox="gallery-mf">
+            <a href="~/img/work-2.jpg" data-lightbox="gallery-mf">
               <div class="work-img">
                 <img src="~/img/work-2.jpg" alt="" class="img-fluid">
               </div>
@@ -121,7 +124,7 @@
         </div>
         <div class="col-md-4">
           <div class="work-box">
-            <a href="img/work-3.jpg" data-lightbox="gallery-mf">
+            <a href="~/img/work-3.jpg" data-lightbox="gallery-mf">
               <div class="work-img">
                 <img src="~/img/work-3.jpg" alt="" class="img-fluid">
               </div>
@@ -145,7 +148,7 @@
         </div>
         <div class="col-md-4">
           <div class="work-box">
-            <a href="img/work-4.jpg" data-lightbox="gallery-mf">
+            <a href="~/img/work-4.jpg" data-lightbox="gallery-mf">
               <div class="work-img">
                 <img src="~/img/work-4.jpg" alt="" class="img-fluid">
               </div>
@@ -169,7 +172,7 @@
         </div>
         <div class="col-md-4">
           <div class="work-box">
-            <a href="img/work-5.jpg" data-lightbox="gallery-mf">
+            <a href="~/img/work-5.jpg" data-lightbox="gallery-mf">
               <div class="work-img">
                 <img src="~/img/work-5.jpg" alt="" class="img-fluid">
               </div>
@@ -193,7 +196,7 @@
         </div>
         <div class="col-md-4">
           <div class="work-box">
-            <a href="img/work-6.jpg" data-lightbox="gallery-mf">
+            <a href="~/img/work-6.jpg" data-lightbox="gallery-mf">
               <div class="work-img">
                 <img src="~/img/work-6.jpg" alt="" class="img-fluid">
               </div>
@@ -222,13 +225,13 @@
   <!--/ Section Portfolio End /-->
 
   <!--/ Section Testimonials Star /-->
-  <div class="testimonials paralax-mf bg-image" style="background-image: url(img/overlay-bg.jpg)">
+  <div class="testimonials paralax-mf bg-image" style="background-image: url(/img/overlay-bg.jpg)">
     <div class="overlay-mf"></div>
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div id="testimonial-mf" class="owl-carousel owl-theme">
-            <div class="testimonial-box">
+            <div class="testimonial-box item">
               <div class="author-test">
                 <img src="~/img/testimonial-2.jpg" alt="" class="rounded-circle b-shadow-a">
                 <span class="author">Xavi Alonso</span>
@@ -241,7 +244,7 @@
                 <span class="comit"><i class="fa fa-quote-right"></i></span>
               </div>
             </div>
-            <div class="testimonial-box">
+            <div class="testimonial-box item">
               <div class="author-test">
                 <img src="~/img/testimonial-4.jpg" alt="" class="rounded-circle b-shadow-a">
                 <span class="author">Marta Socrate</span>

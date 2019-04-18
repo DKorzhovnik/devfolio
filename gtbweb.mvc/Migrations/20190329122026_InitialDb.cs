@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace gtbweb.Migrations
+namespace gtbweb.mvc.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace gtbweb.Migrations
                 {
                     ProfileID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    UserID = table.Column<int>(nullable: false),
+                    UserID = table.Column<string>(nullable: true),
                     About = table.Column<string>(nullable: true),
                     Image = table.Column<string>(nullable: true),
                     RegistrationDate = table.Column<DateTime>(nullable: false),

@@ -31,9 +31,11 @@ namespace gtbweb.webapi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContext<AboutDbContext>(options =>
+           
+                    services.AddScoped<IDatabaseService, DatabaseService>();
+                      services.AddDbContext<BlogDbContext>(options =>
                 options.UseSqlite(
-                   Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

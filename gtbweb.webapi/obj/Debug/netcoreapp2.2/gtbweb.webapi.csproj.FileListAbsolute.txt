@@ -12,9 +12,9 @@
 /mnt/c/users/olukowi/gtbweb/gtbweb.webapi/obj/Debug/netcoreapp2.2/gtbweb.webapi.RazorTargetAssemblyInfo.cache
 /mnt/c/users/olukowi/gtbweb/gtbweb.webapi/obj/Debug/netcoreapp2.2/gtbweb.webapi.dll
 /mnt/c/users/olukowi/gtbweb/gtbweb.webapi/obj/Debug/netcoreapp2.2/gtbweb.webapi.pdb
-/mnt/c/users/olukowi/gtbweb/gtbweb.webapi/bin/Debug/netcoreapp2.2/gtbweb.mvc.Views.dll
-/mnt/c/users/olukowi/gtbweb/gtbweb.webapi/bin/Debug/netcoreapp2.2/gtbweb.mvc.Views.pdb
-/mnt/c/users/olukowi/gtbweb/gtbweb.webapi/bin/Debug/netcoreapp2.2/gtbweb.mvc.dll
-/mnt/c/users/olukowi/gtbweb/gtbweb.webapi/bin/Debug/netcoreapp2.2/gtbweb.mvc.pdb
 /mnt/c/users/olukowi/gtbweb/gtbweb.webapi/obj/Debug/netcoreapp2.2/gtbweb.webapi.csproj.CopyComplete
 /mnt/c/users/olukowi/gtbweb/gtbweb.webapi/bin/Debug/netcoreapp2.2/app.db
+/mnt/c/users/olukowi/gtbweb/gtbweb.webapi/bin/Debug/netcoreapp2.2/gtbweb.Views.dll
+/mnt/c/users/olukowi/gtbweb/gtbweb.webapi/bin/Debug/netcoreapp2.2/gtbweb.Views.pdb
+/mnt/c/users/olukowi/gtbweb/gtbweb.webapi/bin/Debug/netcoreapp2.2/gtbweb.dll
+/mnt/c/users/olukowi/gtbweb/gtbweb.webapi/bin/Debug/netcoreapp2.2/gtbweb.pdb

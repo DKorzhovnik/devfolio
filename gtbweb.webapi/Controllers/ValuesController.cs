@@ -23,9 +23,10 @@ namespace gtbweb.webapi.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-             var pi =  _dataservice.GetProfile(7);
+            // var pi =  _dataservice.GetProfile(7);
 
-            return new string[] { pi.Designation, pi.About };
+           // return new string[] { pi.Designation, pi.About };
+            return new string[] {" pi.Designation", "pi.About" };
         }
 
         // GET api/values/5

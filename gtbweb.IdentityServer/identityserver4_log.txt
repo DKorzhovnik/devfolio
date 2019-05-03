@@ -72,3 +72,11 @@ System.Net.Sockets.SocketException (22): Invalid argument
 2019-03-24 11:11:02.597 +01:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for sign-out
 2019-03-24 11:11:02.614 +01:00 [DBG] Using Community as default ASP.NET Core scheme for challenge
 2019-03-24 11:11:02.615 +01:00 [DBG] Using Community as default ASP.NET Core scheme for forbid
+2019-05-01 17:40:54.642 +01:00 [INF] Starting IdentityServer4 version 2.3.2.0
+2019-05-01 17:40:57.265 +01:00 [INF] Using the default authentication scheme Community for IdentityServer
+2019-05-01 17:40:57.268 +01:00 [ERR] Authentication scheme Community is configured for IdentityServer, but it is not a scheme that supports signin (like cookies). Either configure the default authentication scheme with cookies or set the CookieAuthenticationScheme on the IdentityServerOptions.
+2019-05-01 17:40:57.272 +01:00 [DBG] Using Community as default ASP.NET Core scheme for authentication
+2019-05-01 17:40:57.276 +01:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for sign-in
+2019-05-01 17:40:57.280 +01:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for sign-out
+2019-05-01 17:40:57.283 +01:00 [DBG] Using Community as default ASP.NET Core scheme for challenge
+2019-05-01 17:40:57.285 +01:00 [DBG] Using Community as default ASP.NET Core scheme for forbid

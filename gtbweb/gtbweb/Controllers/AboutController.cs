@@ -29,13 +29,13 @@ namespace gtbweb.Controllers
                _signInManager = signInManager;
                    
         }
-        [NoDirectAccess]
+        
         public IActionResult Index()
         {
             return View();
         }
          
-        [NoDirectAccess] 
+        
         public async Task<IActionResult> About()
         {
  

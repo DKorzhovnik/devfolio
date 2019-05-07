@@ -11,12 +11,12 @@ namespace gtbweb.Controllers
 {
     public class ContactController : Controller
     {
-        [NoDirectAccess]
+        
         public IActionResult Index()
         {
             return View();
         }
-        [NoDirectAccess]
+        
         public IActionResult Contact()
         {
             return View();

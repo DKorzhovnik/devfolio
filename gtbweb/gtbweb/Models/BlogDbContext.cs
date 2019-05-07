@@ -7,6 +7,7 @@ namespace gtbweb.Models
     
         public BlogDbContext(DbContextOptions<BlogDbContext> options) : base(options)
         {
+                        
         }
         
         public DbSet<Tag> Tags { get; set; }

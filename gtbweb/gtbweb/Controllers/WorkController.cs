@@ -29,12 +29,12 @@ namespace gtbweb.Controllers
                _signInManager = signInManager;
                    
         }
-        [NoDirectAccess]
+  
         public IActionResult Index()
         {
             return View();
         }
-        [NoDirectAccess]
+     
         public IActionResult Work()
         {
              var service =  _dataservice.GetPortfolio(_userManager.GetUserId(User));

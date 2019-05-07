@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using System.Globalization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -64,19 +65,19 @@ namespace gtbweb.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-            [Display(Name = "Confirm About")]
+            [Display(Name = "Tell Us About Yourself")]
             public string About { get; set; }
 
 
 
-            [Display(Name = "Confirm Image")]
+            [Display(Name = "Select an Image")]
             public string Image { get; set; }
 
 
-             [Display(Name = "Confirm RegistrationDate")]
+             [Display(Name = "Pick RegistrationDate")]
              public DateTime RegistrationDate { get; set; }
 
-            [Display(Name = "Confirm Designation")]
+            [Display(Name = "Job Designation")]
             public string Designation { get; set; }
 
         }
@@ -89,13 +90,13 @@ namespace gtbweb.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl = returnUrl ?? Url.Content("~/About/About");
             if (ModelState.IsValid)
             {   
                 var profile= new Profile();
                   profile.About=Input.About;
                   profile.Image=Input.Image;
-                  profile.RegistrationDate=Input.RegistrationDate;
+                  profile.RegistrationDate= DateTime.Now;
                   profile.Designation=Input.Designation;
                  
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };

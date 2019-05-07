@@ -20,7 +20,7 @@ namespace gtbweb.Controllers
         {
             return View();
         }
-        [NoDirectAccess]
+    
         public IActionResult Privacy()
         {
             return View();

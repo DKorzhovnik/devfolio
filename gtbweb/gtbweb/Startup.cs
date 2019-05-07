@@ -15,6 +15,8 @@ using gtbweb.Models;
 using gtbweb.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore.Proxies;
+
 
 namespace gtbweb
 {
@@ -29,7 +31,7 @@ namespace gtbweb
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {   services.AddEntityFrameworkProxies();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -47,9 +49,16 @@ namespace gtbweb
                     services.AddDbContext<AboutDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetSection("ConnectionStrings")["DefaultConnection"]));
+                     
+                     
                      services.AddDbContext<BlogDbContext>(options =>
-                options.UseSqlite(
-                    Configuration.GetSection("ConnectionStrings")["DefaultConnection"]));
+                     {
+                options.UseSqlite(Configuration.GetSection("ConnectionStrings")["DefaultConnection"]);
+                options.UseLazyLoadingProxies(true);
+                     });
+                    
+                    
+                     
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();

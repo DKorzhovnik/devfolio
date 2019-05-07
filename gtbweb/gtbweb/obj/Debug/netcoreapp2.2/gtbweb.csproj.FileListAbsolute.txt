@@ -174,3 +174,4 @@
 /mnt/c/users/olukowi/gtbweb/gtbweb/gtbweb/obj/Debug/netcoreapp2.2/gtbweb.dll
 /mnt/c/users/olukowi/gtbweb/gtbweb/gtbweb/obj/Debug/netcoreapp2.2/gtbweb.pdb
 /mnt/c/users/olukowi/gtbweb/gtbweb/gtbweb/obj/Debug/netcoreapp2.2/gtbweb.csproj.CopyComplete
+/mnt/c/users/olukowi/gtbweb/gtbweb/gtbweb/obj/Debug/netcoreapp2.2/Razor/Index.g.cshtml.cs

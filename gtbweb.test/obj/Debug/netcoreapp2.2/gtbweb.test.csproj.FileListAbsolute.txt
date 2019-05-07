@@ -1,5 +1,3 @@
-/mnt/c/users/olukowi/gtbweb/gtbweb.test/bin/Debug/netcoreapp2.2/gtbweb.mvc.Views.dll
-/mnt/c/users/olukowi/gtbweb/gtbweb.test/bin/Debug/netcoreapp2.2/gtbweb.mvc.Views.pdb
 /mnt/c/users/olukowi/gtbweb/gtbweb.test/bin/Debug/netcoreapp2.2/app.db
 /mnt/c/users/olukowi/gtbweb/gtbweb.test/bin/Debug/netcoreapp2.2/NUnit3.TestAdapter.dll
 /mnt/c/users/olukowi/gtbweb/gtbweb.test/bin/Debug/netcoreapp2.2/NUnit3.TestAdapter.pdb
@@ -9,8 +7,6 @@
 /mnt/c/users/olukowi/gtbweb/gtbweb.test/bin/Debug/netcoreapp2.2/gtbweb.test.runtimeconfig.dev.json
 /mnt/c/users/olukowi/gtbweb/gtbweb.test/bin/Debug/netcoreapp2.2/gtbweb.test.dll
 /mnt/c/users/olukowi/gtbweb/gtbweb.test/bin/Debug/netcoreapp2.2/gtbweb.test.pdb
-/mnt/c/users/olukowi/gtbweb/gtbweb.test/bin/Debug/netcoreapp2.2/gtbweb.mvc.dll
-/mnt/c/users/olukowi/gtbweb/gtbweb.test/bin/Debug/netcoreapp2.2/gtbweb.mvc.pdb
 /mnt/c/users/olukowi/gtbweb/gtbweb.test/obj/Debug/netcoreapp2.2/gtbweb.test.csprojAssemblyReference.cache
 /mnt/c/users/olukowi/gtbweb/gtbweb.test/obj/Debug/netcoreapp2.2/gtbweb.test.csproj.CoreCompileInputs.cache
 /mnt/c/users/olukowi/gtbweb/gtbweb.test/obj/Debug/netcoreapp2.2/gtbweb.test.AssemblyInfoInputs.cache
@@ -18,3 +14,7 @@
 /mnt/c/users/olukowi/gtbweb/gtbweb.test/obj/Debug/netcoreapp2.2/gtbweb.test.csproj.CopyComplete
 /mnt/c/users/olukowi/gtbweb/gtbweb.test/obj/Debug/netcoreapp2.2/gtbweb.test.dll
 /mnt/c/users/olukowi/gtbweb/gtbweb.test/obj/Debug/netcoreapp2.2/gtbweb.test.pdb
+/mnt/c/users/olukowi/gtbweb/gtbweb.test/bin/Debug/netcoreapp2.2/gtbweb.Views.dll
+/mnt/c/users/olukowi/gtbweb/gtbweb.test/bin/Debug/netcoreapp2.2/gtbweb.Views.pdb
+/mnt/c/users/olukowi/gtbweb/gtbweb.test/bin/Debug/netcoreapp2.2/gtbweb.dll
+/mnt/c/users/olukowi/gtbweb/gtbweb.test/bin/Debug/netcoreapp2.2/gtbweb.pdb

@@ -176,6 +176,7 @@ namespace gtbweb.Services
             {
               
                    _theContext=_context;
+                  
                    
             }
             
@@ -208,13 +209,29 @@ namespace gtbweb.Services
                    var query = new Seed().portfolios;
                    return query;
              }
-              public BlogPageViewModel GetBlogPage(string id)
+            public BlogPageViewModel GetBlogPage(string id)
              {
                    IEnumerable<BlogPage> collections = _theContext.BlogPages;
                    IEnumerable<Service> services = _theContext.Services;
-                   var querys = collections.Where(s =>s.ProfileID == 1 ).FirstOrDefault<BlogPage>();
-                   var query = new Seed().page;
-                   return query;
+                   var blogpage = collections.Where(s =>s.Profile.UserID == id ).FirstOrDefault<BlogPage>();
+                   var pageview = new Seed().page;
+                   pageview.ProfileID=blogpage.ProfileID;
+                   pageview.Title=blogpage.HeaderTitle;
+                   pageview.BlogImage=blogpage.HeaderImage;
+                   pageview.Text=blogpage.Text;
+                   /* new BlogPageViewModel{ProfileID=1,
+                                      BlogImage="/img/testimonial-2.jpg",
+                                      Title="Alex",
+                                      FullName="Alex",
+                                      PageTag="Alex",
+                                      ReadTime=20,
+                                      TagCollection=tagcollection,
+                                      CommentCount=30,
+                                      Text="FrontEnd",
+                                      RecentPost=posts,
+                                      Comments=commentlist};
+                   */
+                   return pageview;
              }
         } 
 }

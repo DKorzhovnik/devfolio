@@ -33,9 +33,10 @@ namespace gtbweb.Controllers
             return View();
         }
     
-        public IActionResult Page()
+[NoDirectAccess]
+        public IActionResult Page(int? id)
         {
-            var page =  _dataservice.GetBlogPage(_userManager.GetUserId(User));
+            var page =  _dataservice.GetBlogPage(id);
                 ViewBag.PageDetails = page; 
             return View();
         }

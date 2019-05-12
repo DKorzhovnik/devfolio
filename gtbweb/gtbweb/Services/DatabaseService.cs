@@ -19,8 +19,9 @@ namespace gtbweb.Services
              Profile GetProfile(string id);
              ServiceCollectionViewModel GetService(string id);
              BlogCollectionViewModel GetBlogs(string id);
-             BlogPageViewModel GetBlogPage(string id);
+             BlogPageViewModel GetBlogPage(int? id);
              PortfolioCollectionViewModel  GetPortfolio(string id);
+             void SaveAbout(string about, string id);
         }
         public class ServiceCollectionViewModel
         {
@@ -60,6 +61,7 @@ namespace gtbweb.Services
         }
          public class BlogPageViewModel
         {  public  int      ProfileID  { get; set; }
+           public  int      BlogpageID  { get; set; }
            public  string   BlogImage  { get; set; }
            public  string   Title { get; set; }
            public  string   FullName { get; set; }
@@ -147,8 +149,8 @@ namespace gtbweb.Services
                               };
                     pages = new List<BlogPageViewModel>
                      {
-                           new BlogPageViewModel{ProfileID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=20,TagCollection=tagcollection,CommentCount=30,Text="FrontEnd",RecentPost=posts,Comments=commentlist},
-                           new BlogPageViewModel{ProfileID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=30,TagCollection=tagcollection,CommentCount=30,Text="FrontEnd",RecentPost=posts,Comments=commentlist}
+                           new BlogPageViewModel{ProfileID=1,BlogpageID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=20,TagCollection=tagcollection,CommentCount=30,Text="FrontEnd",RecentPost=posts,Comments=commentlist},
+                           new BlogPageViewModel{ProfileID=1,BlogpageID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=30,TagCollection=tagcollection,CommentCount=30,Text="FrontEnd",RecentPost=posts,Comments=commentlist}
                      };
                     servicelist = new List<ServiceViewModel>
                      {
@@ -160,7 +162,7 @@ namespace gtbweb.Services
                            new PortfolioViewModel{Title="Web design",Tag="Alex",PortfolioImage="/img/work-1.jpg",CreationDate=DateTime.Parse("2005-09-01")},
                            new PortfolioViewModel{Title="Web design",Tag="Alex",PortfolioImage="/img/work-2.jpg",CreationDate=DateTime.Parse("2005-09-01")}
                      };
-                   page= new BlogPageViewModel{ProfileID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=30,TagCollection=tagcollection,CommentCount=30,Text="Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat.",RecentPost=posts,Comments=commentlist};          
+                   page= new BlogPageViewModel{ProfileID=1,BlogpageID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=30,TagCollection=tagcollection,CommentCount=30,Text="Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat.",RecentPost=posts,Comments=commentlist};          
                    blogs= new BlogCollectionViewModel{Slogan="Creativity Has no Limits",BlogView=pages};
                    services= new ServiceCollectionViewModel{Slogan="Creativity Has no Limits",ServiceView=servicelist};
                    portfolios= new PortfolioCollectionViewModel{Slogan="Creativity Has no Limits",WorksCompleted=20,AwardsWon=4,TotalClients=9,YearsOfExperience=12, Portfolio=portfoliolist};
@@ -187,18 +189,45 @@ namespace gtbweb.Services
              }
              public ServiceCollectionViewModel  GetService(string id)
              {
-                   IEnumerable<Proficiency> collections = _theContext.Proficiencies;
+                   IEnumerable<gtbweb.Models.ServiceCollection> collections = _theContext.ServiceCollections;
                    IEnumerable<Service> services = _theContext.Services;
-                   var querys = collections.Where(s =>s.ProfileID == 1 ).FirstOrDefault<Proficiency>();
+                   var querys = collections.Where(s =>s.Proficiency.Profile.UserID == id )
+                                           .Select(s=>s.Service)
+                                           .Select(s=> 
+                                              new ServiceViewModel
+                                              {
+                                                 Title =s.Title,
+                                                 ServiceDescription=s.ServiceDescription
+                                              }
+                                           ).ToList();//.FirstOrDefault<Service>();
                    var query = new Seed().services;
+                   query.ServiceView = querys;
                    return query;
              }
               public BlogCollectionViewModel GetBlogs(string id)
              {
                    IEnumerable<BlogCollection> collections = _theContext.BlogCollections;
                    IEnumerable<Service> services = _theContext.Services;
-                   var querys = collections.Where(s =>s.ProfileID == 1 ).FirstOrDefault<BlogCollection>();
+                   Seed temp= new Seed();
+                   var querys = collections.Where(s =>s.Profile.UserID == id )
+                                            .Select(s=>s.BlogPage)
+                                            .Select(s=> 
+                                            new BlogPageViewModel{ProfileID=1,
+                                            BlogpageID=s.BlogPageID,
+                                            BlogImage=s.HeaderImage,
+                                            Title=s.HeaderTitle,
+                                            FullName=s.Profile.UserID,
+                                            PageTag="Alex",
+                                            ReadTime=30,
+                                            TagCollection=temp.tagcollection,
+                                            CommentCount=30,
+                                            Text=s.Text,
+                                            RecentPost=temp.posts,
+                                            Comments=temp.commentlist
+                                            }        
+                                            ).ToList();
                    var query = new Seed().blogs;
+                   query.BlogView = querys;
                    return query;
              }
               public PortfolioCollectionViewModel GetPortfolio(string id)
@@ -209,11 +238,12 @@ namespace gtbweb.Services
                    var query = new Seed().portfolios;
                    return query;
              }
-            public BlogPageViewModel GetBlogPage(string id)
+            
+              public BlogPageViewModel GetBlogPage(int? id)
              {
                    IEnumerable<BlogPage> collections = _theContext.BlogPages;
                    IEnumerable<Service> services = _theContext.Services;
-                   var blogpage = collections.Where(s =>s.Profile.UserID == id ).FirstOrDefault<BlogPage>();
+                   var blogpage = collections.Where(s =>s.BlogPageID == id ).FirstOrDefault<BlogPage>();
                    var pageview = new Seed().page;
                    pageview.ProfileID=blogpage.ProfileID;
                    pageview.Title=blogpage.HeaderTitle;
@@ -232,6 +262,12 @@ namespace gtbweb.Services
                                       Comments=commentlist};
                    */
                    return pageview;
+             }
+             public void SaveAbout(string about,string id)
+             {
+              var profile =  _theContext.Profiles.Where(s => s.UserID == id).FirstOrDefault<Profile>();
+              profile.About=about;
+              _theContext.SaveChanges();
              }
         } 
 }

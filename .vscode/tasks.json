@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/gtbweb.mvc/gtbweb.csproj"
+                "${workspaceFolder}/gtbweb/gtbweb/gtbweb.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

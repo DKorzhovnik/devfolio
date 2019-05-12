@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/gtbweb.mvc/bin/Debug/netcoreapp2.2/gtbweb.dll",
+            "program": "${workspaceFolder}/gtbweb/gtbweb/bin/Debug/netcoreapp2.2/gtbweb.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/gtbweb.mvc",
+            "cwd": "${workspaceFolder}/gtbweb",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {

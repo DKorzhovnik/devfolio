@@ -13,7 +13,9 @@ body {
   background-color: #f5f5f5;
   color: #4e4e4e;
 }
-
+.modal-backdrop {
+  display:none;
+}
 h1,
 h2,
 h3,
@@ -1247,6 +1249,8 @@ footer .credits a {
   .box-comments .list-comments .comment-author {
     font-size: 1.5rem;
   }
+
+  
 }
 
 @media (min-width: 992px) {

@@ -10,24 +10,35 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using System.Data.Entity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
 
 namespace gtbweb.Services
 {
         public interface IDatabaseService
-        {
+        {    List<SelectListItem> GetSkills();
              Profile GetProfile(string id);
+             List<ProficiencyViewModel> GetProficiency(string id);
              ServiceCollectionViewModel GetService(string id);
              BlogCollectionViewModel GetBlogs(string id);
              BlogPageViewModel GetBlogPage(int? id);
              PortfolioCollectionViewModel  GetPortfolio(string id);
              void SaveAbout(string about, string id);
+             void SaveDesignation(string designation, string id);
+             void SaveProficiency(int skillid,int score, int id);
         }
         public class ServiceCollectionViewModel
         {
          
            public  string   Slogan { get; set; }
            public  ICollection<ServiceViewModel>  ServiceView { get; set; }
+           
+        }
+        public class ProficiencyViewModel
+        {
+         
+           public  string   Skill { get; set; }
+           public  int      Score { get; set; }
            
         }
         public class ServiceViewModel
@@ -182,6 +193,26 @@ namespace gtbweb.Services
                    
             }
             
+
+             public List<SelectListItem> GetSkills()
+             {
+                var profile =  _theContext.Skills.Select(s =>
+                new SelectListItem{
+                          Value=s.SkillID.ToString(),
+                          Text=s.Title
+                }).ToList();
+                 return profile;
+             }
+             public List<ProficiencyViewModel> GetProficiency(string id)
+             {
+                var profile =  _theContext.Proficiencies.Where(s=>s.Profile.UserID==id)
+                                                      .Select(s =>
+                                                      new ProficiencyViewModel{
+                                                               Skill=s.Skill.Title,
+                                                               Score=s.PercentageScore ?? 0
+                                                      }).ToList();
+                 return profile;
+             }
              public Profile GetProfile(string id)
              {
                 var profile =  _theContext.Profiles.Where(s => s.UserID == id).FirstOrDefault<Profile>();
@@ -266,7 +297,25 @@ namespace gtbweb.Services
              public void SaveAbout(string about,string id)
              {
               var profile =  _theContext.Profiles.Where(s => s.UserID == id).FirstOrDefault<Profile>();
-              profile.About=about;
+              profile.About=profile.About+about;
+              _theContext.SaveChanges();
+             }
+              public void SaveDesignation(string designation,string id)
+             {
+              var profile =  _theContext.Profiles.Where(s => s.UserID == id).FirstOrDefault<Profile>();
+              profile.Designation = designation;
+              _theContext.SaveChanges();
+             }
+              public void SaveProficiency(int skillid,int score,int id)
+             {
+              var proficiencycontext =  _theContext.Proficiencies;
+               var proficiencyitem = new Proficiency
+               {
+                  ProfileID=id,
+                  SkillID=skillid,
+                  PercentageScore=score
+               };
+             proficiencycontext.Add(proficiencyitem);
               _theContext.SaveChanges();
              }
         } 

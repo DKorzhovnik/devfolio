@@ -55,6 +55,14 @@ namespace gtbweb.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
+            [Display(Name = "FirstName")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [Display(Name = "LastName")]
+            public string LastName { get; set; }
+
+            [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
@@ -96,6 +104,8 @@ namespace gtbweb.Areas.Identity.Pages.Account
                 var profile= new Profile();
                   profile.About=Input.About;
                   profile.Image=Input.Image;
+                  profile.FirstName=Input.FirstName;
+                  profile.LastName=Input.LastName;
                   profile.RegistrationDate= DateTime.Now;
                   profile.Designation=Input.Designation;
                  

@@ -10,6 +10,8 @@ namespace gtbweb.Models
         public string UserID { get; set; }
         public string About { get; set; }
         public string Image { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         
 
         [DataType(DataType.Date)]

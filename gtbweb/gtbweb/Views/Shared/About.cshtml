@@ -7,7 +7,10 @@
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-
+<script>
+  $('#ModalLoginForm').appendTo("body")
+   $('#SkillForm').appendTo("body")
+</script>
   <section id="about" class="about-mf sect-pt4 route">
     <div class="container">
       <div class="row">
@@ -23,10 +26,9 @@
                   </div>
                   <div class="col-sm-6 col-md-7">
                     <div class="about-info">
-                      <p><span class="title-s">Name: </span> <span>@ViewBag.ProfileDetails.Designation</span></p>
-                      <p><span class="title-s">Profile: </span> <span>full stack developer</span></p>
+                      <p><span class="title-s">Name: </span> <span>@ViewBag.ProfileDetails.Designation </span></p>
+                      <p><span class="title-s">Profile: </span> <span>@ViewBag.ProfileDetails.Designation</span><a href="#DesignationForm" data-backdrop="false" data-toggle="modal" data-target="#DesignationForm"><span class="glyphicon glyphicon-pencil"></span></a><p>
                       <p><span class="title-s">Email: </span> <span>@User.Identity.Name</span></p>
-                      <p><span class="title-s">Phone: </span> <span>(617) 557-0089</span></p>
                     </div>
                   </div>
                 </div>
@@ -36,29 +38,20 @@
                      <div class="col-sm-3">
                      <p class="title-s">Skill</p>
                      </div>
+                     <div class="col-sm-3">
+                     <a  href="#SkillForm" data-backdrop="false" data-toggle="modal" data-target="#SkillForm">Add</a>
+                     </div>
                   </div>
                    </div>
-                   
-                  <span>HTML</span> <span class="pull-right">85%</span>
+ @foreach(var x in @ViewBag.ProficiencyList)
+      {
+                  <span>@x.Skill</span> <span class="pull-right">@x.Score%</span>
                   <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
+                    <div class="progress-bar" role="progressbar" style="width: @x.Score%;" aria-valuenow=@x.Score aria-valuemin="0"
                       aria-valuemax="100"></div>
                   </div>
-                  <span>CSS3</span> <span class="pull-right">75%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <span>PHP</span> <span class="pull-right">50%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                  <span>JAVASCRIPT</span> <span class="pull-right">90%</span>
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
+      }
+                 
                 </div>
               </div>
               <div class="col-md-6">
@@ -74,18 +67,18 @@
                   </p>
                   
                 </div>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalLoginForm">Edit</button>
+                <button type="button" class="btn btn-primary" data-backdrop="false" data-toggle="modal" data-target="#ModalLoginForm">Edit</button>
 
                   <!-- The Modal -->
 
-                  <div id="ModalLoginForm" class="modal fade">
+                  <div id="ModalLoginForm" class="modal fade" >
                       <div class="modal-dialog" role="document">
                           <div class="modal-content">
                               <div class="modal-header">
                                   <h1 class="modal-title">Edit</h1>
                               </div>
                               <div class="modal-body">
-                                  <form  method="post" asp-action="Save" asp-controller="About">
+                                  <form  method="post" asp-action="SaveAbout" asp-controller="About">
                                       <input type="hidden" name="_token" value="">
                                       <div class="form-group">
                                           <label class="control-label">About</label>
@@ -105,25 +98,78 @@
                           </div><!-- /.modal-content -->
                       </div><!-- /.modal-dialog -->
                   </div><!-- /.modal -->
-                  <div id="SkillForm" class="modal fade">
+                  <div id="DesignationForm" class="modal fade" >
                       <div class="modal-dialog" role="document">
                           <div class="modal-content">
                               <div class="modal-header">
-                                  <h1 class="modal-title">Skills</h1>
+                                  <h1 class="modal-title">Edit</h1>
                               </div>
                               <div class="modal-body">
-                                  <form  method="post" asp-action="Save" asp-controller="About">
+                                  <form  method="post" asp-action="SaveDesignation" asp-controller="About">
                                       <input type="hidden" name="_token" value="">
                                       <div class="form-group">
-                                          <label class="control-label">About</label>
+                                          <label class="control-label">Designation</label>
                                           <div>
-                                              <input asp-for="About" type="textarea" rows="4" cols="50" class="form-control input-lg">
+                                              <input asp-for="Designation" type="textarea" rows="4" cols="50" class="form-control input-lg">
                                           </div>
                                       </div>
                                       <div class="form-group">
                                           <div>
                                               <button type="submit" class="btn btn-success">
                                                   Save
+                                              </button>
+                                          </div>
+                                          <div>
+                                              <button  class="btn btn-close">
+                                                  Close
+                                              </button>
+                                          </div>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div><!-- /.modal-content -->
+                      </div><!-- /.modal-dialog -->
+                  </div><!-- /.modal -->
+                  <div id="SkillForm" class="modal fade"  > 
+                      <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h1 class="modal-title">Skills</h1>
+                              </div>
+                              <div class="modal-body">
+                                  <form  method="post" asp-action="SaveProficiency" asp-controller="About">
+                                      <input type="hidden" name="_token" value="">
+                                      <div class="form-group">
+                                          
+                                          
+                                          <div class="row">
+                                            
+                                              <div class="col-md-5">
+                                                  <label class="control-label">Add a Skill</label>
+                                              </div>
+                                                <div class="col-md-6">
+                                                   <label class="control-label">Add a Score</label>
+                                              </div>
+                                         
+                                          </div>
+                                          <div class="row">
+                                            
+                                              <div class="col-md-5">
+                                                   <select asp-for="Skill" asp-items="@ViewBag.SkillList" class="form-control input-lg"></select>
+                                              </div>
+                                                <div class="col-md-6">
+                                                   <input asp-for="Score" type="text" rows="4" cols="50" class="form-control input-lg">
+                                              </div>
+                                         
+                                          </div>
+                                     </div>
+                                      <div class="form-group">
+                                          <div>
+                                              <button type="submit" class="btn btn-success">
+                                                  Save
+                                              </button>
+                                              <button type="submit" class="btn btn-close">
+                                                  Close
                                               </button>
                                           </div>
                                       </div>

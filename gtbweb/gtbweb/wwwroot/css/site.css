@@ -45,6 +45,8 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
   width: 100%;
+  --ck-z-default: 100;
+	--ck-z-modal: calc( var(--ck-z-default) + 999 );
 }
 .footer {
   position: absolute;
@@ -58,3 +60,7 @@ body {
 .modal-dialog{
   padding-top: 200px;
 }
+.edit-panel{
+display:none;
+}
+

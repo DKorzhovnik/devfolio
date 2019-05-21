@@ -17,15 +17,16 @@ namespace gtbweb.Services
 {
         public interface IDatabaseService
         {    List<SelectListItem> GetSkills();
-             Profile GetProfile(string id);
-             List<ProficiencyViewModel> GetProficiency(string id);
-             ServiceCollectionViewModel GetService(string id);
-             BlogCollectionViewModel GetBlogs(string id);
-             BlogPageViewModel GetBlogPage(int? id);
-             PortfolioCollectionViewModel  GetPortfolio(string id);
-             void SaveAbout(string about, string id);
-             void SaveDesignation(string designation, string id);
-             void SaveProficiency(int skillid,int score, int id);
+             Profile GetProfile(string userid);
+             List<ProficiencyViewModel> GetProficiency(string userid);
+             ServiceCollectionViewModel GetService(string userid);
+             BlogCollectionViewModel GetBlogs(string userid);
+             BlogPageViewModel GetBlogPage(int? blogpageid);
+             PortfolioCollectionViewModel  GetPortfolio(string userid);
+             int CreateBlogPage(int profileid);
+             void SaveAbout(string about, string userid);
+             void SaveDesignation(string designation, string userid);
+             void SaveProficiency(int skillid,int score, int profileid);
         }
         public class ServiceCollectionViewModel
         {
@@ -203,9 +204,9 @@ namespace gtbweb.Services
                 }).ToList();
                  return profile;
              }
-             public List<ProficiencyViewModel> GetProficiency(string id)
+             public List<ProficiencyViewModel> GetProficiency(string userid)
              {
-                var profile =  _theContext.Proficiencies.Where(s=>s.Profile.UserID==id)
+                var profile =  _theContext.Proficiencies.Where(s=>s.Profile.UserID==userid)
                                                       .Select(s =>
                                                       new ProficiencyViewModel{
                                                                Skill=s.Skill.Title,
@@ -213,16 +214,16 @@ namespace gtbweb.Services
                                                       }).ToList();
                  return profile;
              }
-             public Profile GetProfile(string id)
+             public Profile GetProfile(string userid)
              {
-                var profile =  _theContext.Profiles.Where(s => s.UserID == id).FirstOrDefault<Profile>();
+                var profile =  _theContext.Profiles.Where(s => s.UserID == userid).FirstOrDefault<Profile>();
                  return profile;
              }
-             public ServiceCollectionViewModel  GetService(string id)
+             public ServiceCollectionViewModel  GetService(string userid)
              {
                    IEnumerable<gtbweb.Models.ServiceCollection> collections = _theContext.ServiceCollections;
                    IEnumerable<Service> services = _theContext.Services;
-                   var querys = collections.Where(s =>s.Proficiency.Profile.UserID == id )
+                   var querys = collections.Where(s =>s.Proficiency.Profile.UserID == userid )
                                            .Select(s=>s.Service)
                                            .Select(s=> 
                                               new ServiceViewModel
@@ -235,12 +236,12 @@ namespace gtbweb.Services
                    query.ServiceView = querys;
                    return query;
              }
-              public BlogCollectionViewModel GetBlogs(string id)
+              public BlogCollectionViewModel GetBlogs(string userid)
              {
                    IEnumerable<BlogCollection> collections = _theContext.BlogCollections;
                    IEnumerable<Service> services = _theContext.Services;
                    Seed temp= new Seed();
-                   var querys = collections.Where(s =>s.Profile.UserID == id )
+                   var querys = collections.Where(s =>s.Profile.UserID == userid )
                                             .Select(s=>s.BlogPage)
                                             .Select(s=> 
                                             new BlogPageViewModel{ProfileID=1,
@@ -261,7 +262,7 @@ namespace gtbweb.Services
                    query.BlogView = querys;
                    return query;
              }
-              public PortfolioCollectionViewModel GetPortfolio(string id)
+              public PortfolioCollectionViewModel GetPortfolio(string userid)
              {
                    IEnumerable<BlogCollection> collections = _theContext.BlogCollections;
                    IEnumerable<Service> services = _theContext.Services;
@@ -270,11 +271,11 @@ namespace gtbweb.Services
                    return query;
              }
             
-              public BlogPageViewModel GetBlogPage(int? id)
+              public BlogPageViewModel GetBlogPage(int? blogpageid)
              {
                    IEnumerable<BlogPage> collections = _theContext.BlogPages;
                    IEnumerable<Service> services = _theContext.Services;
-                   var blogpage = collections.Where(s =>s.BlogPageID == id ).FirstOrDefault<BlogPage>();
+                   var blogpage = collections.Where(s =>s.BlogPageID == blogpageid ).FirstOrDefault<BlogPage>();
                    var pageview = new Seed().page;
                    pageview.ProfileID=blogpage.ProfileID;
                    pageview.Title=blogpage.HeaderTitle;
@@ -294,29 +295,60 @@ namespace gtbweb.Services
                    */
                    return pageview;
              }
-             public void SaveAbout(string about,string id)
+             public void SaveAbout(string about,string userid)
              {
-              var profile =  _theContext.Profiles.Where(s => s.UserID == id).FirstOrDefault<Profile>();
+              var profile =  _theContext.Profiles.Where(s => s.UserID == userid).FirstOrDefault<Profile>();
               profile.About=profile.About+about;
               _theContext.SaveChanges();
              }
-              public void SaveDesignation(string designation,string id)
+              public void SaveDesignation(string designation,string userid)
              {
-              var profile =  _theContext.Profiles.Where(s => s.UserID == id).FirstOrDefault<Profile>();
+              var profile =  _theContext.Profiles.Where(s => s.UserID == userid).FirstOrDefault<Profile>();
               profile.Designation = designation;
               _theContext.SaveChanges();
              }
-              public void SaveProficiency(int skillid,int score,int id)
+              public void SaveProficiency(int skillid,int score,int profileid)
              {
               var proficiencycontext =  _theContext.Proficiencies;
                var proficiencyitem = new Proficiency
                {
-                  ProfileID=id,
+                  ProfileID=profileid,
                   SkillID=skillid,
                   PercentageScore=score
                };
              proficiencycontext.Add(proficiencyitem);
               _theContext.SaveChanges();
+             }
+              public int CreateBlogPage(int profileid)
+             {
+              var blogpagecontext =  _theContext.BlogPages;
+              var blogcollectioncontext =  _theContext.BlogCollections;
+               var timestamp=DateTime.Now;
+               var blogitem = new BlogPage
+               {
+                  ProfileID=profileid,
+                  TagID=1,
+                  HeaderTitle="Fill Title",
+                  HeaderImage="/img/testimonial-2.jpg",
+                  CreationDate=timestamp,
+                  LastEditDate=DateTime.Now,
+                  Text="Fill in the post"
+                  
+               };
+            blogpagecontext.Add(blogitem);
+              _theContext.SaveChanges();
+              var newpage =_theContext.BlogPages.Where(s=>s.CreationDate==timestamp ).FirstOrDefault<BlogPage>();
+              
+                 var blogCollection=new BlogCollection
+                 {
+                    ProfileID=profileid,
+                    BlogPageID=newpage.BlogPageID,
+                    PersonalStatement="Statement"
+                 };
+                 blogcollectioncontext.Add(blogCollection);
+                  _theContext.SaveChanges();
+
+              return newpage.BlogPageID;
              }
         } 
 }

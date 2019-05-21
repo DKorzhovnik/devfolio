@@ -7,10 +7,7 @@
 
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-<script>
-  $('#ModalLoginForm').appendTo("body")
-   $('#SkillForm').appendTo("body")
-</script>
+
   <section id="about" class="about-mf sect-pt4 route">
     <div class="container">
       <div class="row">
@@ -51,7 +48,7 @@
                       aria-valuemax="100"></div>
                   </div>
       }
-                 
+
                 </div>
               </div>
               <div class="col-md-6">
@@ -65,11 +62,42 @@
                   <p class="lead">
                     @ViewBag.ProfileDetails.About
                   </p>
-                  
+                  <div class="edit-panel">
+                 <textarea  name="content" id="editor">This is some sample content.</textarea>
+                <script>
+                        ClassicEditor
+                                .create( document.querySelector( '#editor' ) )
+                                
+                                .catch( error => {
+                                        console.error( error );
+                                } );
+                </script>
                 </div>
-                <button type="button" class="btn btn-primary" data-backdrop="false" data-toggle="modal" data-target="#ModalLoginForm">Edit</button>
+                </div>
+                <button id="edit-panel-trigger"type="button" class="btn btn-primary" data-backdrop="false" data-toggle="modal" data-target="#basicModal">Edit</button>
 
                   <!-- The Modal -->
+
+                  
+	<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+				</div>
+				<div class="modal-body">
+					<div id="editor">
+						<p>This is sample content of <a href="https://ckeditor.com">CKEditor 5 Balloon Build</a>.</p>
+
+						<p>Now, <strong>make some text selection</strong>! :)</p>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
                   <div id="ModalLoginForm" class="modal fade" >
                       <div class="modal-dialog" role="document">
@@ -78,12 +106,13 @@
                                   <h1 class="modal-title">Edit</h1>
                               </div>
                               <div class="modal-body">
+                               
                                   <form  method="post" asp-action="SaveAbout" asp-controller="About">
                                       <input type="hidden" name="_token" value="">
                                       <div class="form-group">
                                           <label class="control-label">About</label>
-                                          <div>
-                                              <input asp-for="About" type="textarea" rows="4" cols="50" class="form-control input-lg">
+                                          <div >
+                                              <input asp-for="About" type="textarea" rows="4" cols="50" class="form-control input-lg"  >
                                           </div>
                                       </div>
                                       <div class="form-group">
@@ -91,7 +120,9 @@
                                               <button type="submit" class="btn btn-success">
                                                   Save
                                               </button>
+                                              <button type="button" class="btn btn-default pull-right btn-danger" data-dismiss="modal">Close</button>
                                           </div>
+                                        </div>
                                       </div>
                                   </form>
                               </div>
@@ -118,12 +149,9 @@
                                               <button type="submit" class="btn btn-success">
                                                   Save
                                               </button>
+                                              <button type="button" class="btn btn-default pull-right btn-danger" data-dismiss="modal">Close</button>
                                           </div>
-                                          <div>
-                                              <button  class="btn btn-close">
-                                                  Close
-                                              </button>
-                                          </div>
+                                          
                                       </div>
                                   </form>
                               </div>
@@ -168,9 +196,7 @@
                                               <button type="submit" class="btn btn-success">
                                                   Save
                                               </button>
-                                              <button type="submit" class="btn btn-close">
-                                                  Close
-                                              </button>
+                                              <button type="button" class="btn btn-default pull-right btn-danger" data-dismiss="modal">Close</button>
                                           </div>
                                       </div>
                                   </form>

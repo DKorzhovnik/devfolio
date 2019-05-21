@@ -39,6 +39,12 @@ namespace gtbweb.Controllers
                 ViewBag.BlogCollection = blogs; 
             return View();
         }
+        public IActionResult Create()
+        {    var profile =  _dataservice.GetProfile(_userManager.GetUserId(User));
+             var blogs =  _dataservice.CreateBlogPage(profile.ProfileID);
+                ViewBag.BlogCollection = blogs; 
+             return LocalRedirect(Url.Content("~/Page/Page/"+blogs.ToString()));
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

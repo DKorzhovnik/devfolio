@@ -47,6 +47,15 @@
                 @ViewBag.PageDetails.Text
               </p>
             </div>
+             <textarea  name="content"  id="editor">This is some sample content.</textarea>
+                <script>
+                        ClassicEditor
+                                .create( document.querySelector( '#editor' ) )
+                                
+                                .catch( error => {
+                                        console.error( error );
+                                } );
+                </script>
           </div>
               
           <div class="box-comments">

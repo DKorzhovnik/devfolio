@@ -14,11 +14,18 @@ using Microsoft.AspNetCore.Identity;
 
 namespace gtbweb.Controllers
 {
+    public class InputPageModel
+    {
+             [BindProperty]
+              public string Editor{get;set;}
+             [BindProperty]
+              public string Pageid{get;set;}
+    }
     public class PageController : Controller
     {   private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private IDatabaseService  _dataservice;
-
+        
          public PageController(IDatabaseService  dataservice,UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager)
         {
@@ -32,13 +39,19 @@ namespace gtbweb.Controllers
         {
             return View();
         }
-    
-[NoDirectAccess]
+
         public IActionResult Page(int? id)
         {
             var page =  _dataservice.GetBlogPage(id);
                 ViewBag.PageDetails = page; 
+              
             return View();
+        }
+        public IActionResult Save(InputPageModel Input)
+        {
+            _dataservice.SaveBlogText(Input.Editor,Input.Pageid);
+                
+            return LocalRedirect(Url.Content("~/Page/Page/"+Input.Pageid));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

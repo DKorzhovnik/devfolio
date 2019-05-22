@@ -1,3 +1,4 @@
+  @model gtbweb.Controllers.InputPageModel
  @{
     ViewData["Title"] = "Page";
 }
@@ -9,7 +10,7 @@
         <div class="col-md-8">
           <div class="post-box">
             <div class="post-thumb">
-              <img src=@ViewBag.PageDetails.BlogImage class="img-fluid" alt="">
+              <img src=@ViewBag.PageDetails.BlogImage class="img-fluid" alt=""><a asp-controller="Page" asp-action="Page">Change</a>
             </div>
             <div class="post-meta">
               <h1 class="article-title">@ViewBag.PageDetails.Title</h1>
@@ -31,31 +32,38 @@
               </ul>
             </div>
             <div class="article-content">
-            <p>
-             @ViewBag.PageDetails.Text
-            <p>
-            <p>
-             @ViewBag.PageDetails.Text
-            <p>
-            <p>
-             @ViewBag.PageDetails.Text
-            <p>
-              <blockquote class="blockquote">
-                <p class="mb-0">@ViewBag.PageDetails.Text</p>
-              </blockquote>
-              <p>
-                @ViewBag.PageDetails.Text
-              </p>
+             @Html.Raw(@ViewBag.PageDetails.Text)
             </div>
-             <textarea  name="content"  id="editor">This is some sample content.</textarea>
+             <form  method="post" asp-action="Save" asp-controller="Page">
+               <div class="form-group">
+                                          
+                        <div>
+                            <input asp-for="Pageid" type="hidden" value=@ViewBag.PageDetails.BlogPageID>
+                       </div>
+                                     
+             </div>
+             <div class="form-group">
+                                          
+                        <div>
+                            <textarea asp-for="Editor">@ViewBag.PageDetails.Text</textarea>
+                       </div>
+                                     
+             </div>
+             
                 <script>
                         ClassicEditor
-                                .create( document.querySelector( '#editor' ) )
+                                .create( document.querySelector( '#Editor' ) )
                                 
                                 .catch( error => {
                                         console.error( error );
                                 } );
                 </script>
+                <div class="form-group">
+                       <div>
+                           <button type="submit" class="btn btn-success">Save </button>       
+                        </div>
+                 </div>
+                </form>
           </div>
               
           <div class="box-comments">

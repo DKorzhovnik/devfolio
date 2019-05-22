@@ -24,6 +24,7 @@ namespace gtbweb.Services
              BlogPageViewModel GetBlogPage(int? blogpageid);
              PortfolioCollectionViewModel  GetPortfolio(string userid);
              int CreateBlogPage(int profileid);
+             void SaveBlogText(string Editortext, string pageid);
              void SaveAbout(string about, string userid);
              void SaveDesignation(string designation, string userid);
              void SaveProficiency(int skillid,int score, int profileid);
@@ -73,7 +74,7 @@ namespace gtbweb.Services
         }
          public class BlogPageViewModel
         {  public  int      ProfileID  { get; set; }
-           public  int      BlogpageID  { get; set; }
+           public  int      BlogPageID  { get; set; }
            public  string   BlogImage  { get; set; }
            public  string   Title { get; set; }
            public  string   FullName { get; set; }
@@ -161,8 +162,8 @@ namespace gtbweb.Services
                               };
                     pages = new List<BlogPageViewModel>
                      {
-                           new BlogPageViewModel{ProfileID=1,BlogpageID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=20,TagCollection=tagcollection,CommentCount=30,Text="FrontEnd",RecentPost=posts,Comments=commentlist},
-                           new BlogPageViewModel{ProfileID=1,BlogpageID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=30,TagCollection=tagcollection,CommentCount=30,Text="FrontEnd",RecentPost=posts,Comments=commentlist}
+                           new BlogPageViewModel{ProfileID=1,BlogPageID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=20,TagCollection=tagcollection,CommentCount=30,Text="FrontEnd",RecentPost=posts,Comments=commentlist},
+                           new BlogPageViewModel{ProfileID=1,BlogPageID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=30,TagCollection=tagcollection,CommentCount=30,Text="FrontEnd",RecentPost=posts,Comments=commentlist}
                      };
                     servicelist = new List<ServiceViewModel>
                      {
@@ -174,7 +175,7 @@ namespace gtbweb.Services
                            new PortfolioViewModel{Title="Web design",Tag="Alex",PortfolioImage="/img/work-1.jpg",CreationDate=DateTime.Parse("2005-09-01")},
                            new PortfolioViewModel{Title="Web design",Tag="Alex",PortfolioImage="/img/work-2.jpg",CreationDate=DateTime.Parse("2005-09-01")}
                      };
-                   page= new BlogPageViewModel{ProfileID=1,BlogpageID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=30,TagCollection=tagcollection,CommentCount=30,Text="Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat.",RecentPost=posts,Comments=commentlist};          
+                   page= new BlogPageViewModel{ProfileID=1,BlogPageID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=30,TagCollection=tagcollection,CommentCount=30,Text="Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat.",RecentPost=posts,Comments=commentlist};          
                    blogs= new BlogCollectionViewModel{Slogan="Creativity Has no Limits",BlogView=pages};
                    services= new ServiceCollectionViewModel{Slogan="Creativity Has no Limits",ServiceView=servicelist};
                    portfolios= new PortfolioCollectionViewModel{Slogan="Creativity Has no Limits",WorksCompleted=20,AwardsWon=4,TotalClients=9,YearsOfExperience=12, Portfolio=portfoliolist};
@@ -245,7 +246,7 @@ namespace gtbweb.Services
                                             .Select(s=>s.BlogPage)
                                             .Select(s=> 
                                             new BlogPageViewModel{ProfileID=1,
-                                            BlogpageID=s.BlogPageID,
+                                            BlogPageID=s.BlogPageID,
                                             BlogImage=s.HeaderImage,
                                             Title=s.HeaderTitle,
                                             FullName=s.Profile.UserID,
@@ -281,6 +282,7 @@ namespace gtbweb.Services
                    pageview.Title=blogpage.HeaderTitle;
                    pageview.BlogImage=blogpage.HeaderImage;
                    pageview.Text=blogpage.Text;
+                   pageview.BlogPageID=blogpage.BlogPageID;
                    /* new BlogPageViewModel{ProfileID=1,
                                       BlogImage="/img/testimonial-2.jpg",
                                       Title="Alex",
@@ -294,6 +296,12 @@ namespace gtbweb.Services
                                       Comments=commentlist};
                    */
                    return pageview;
+             }
+             public void SaveBlogText(string editortext,string pageid)
+             {
+              var page =  _theContext.BlogPages.Where(s => s.BlogPageID == Convert.ToInt32(pageid)).FirstOrDefault<BlogPage>();
+              page.Text=editortext;
+              _theContext.SaveChanges();
              }
              public void SaveAbout(string about,string userid)
              {

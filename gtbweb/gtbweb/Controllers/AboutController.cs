@@ -37,6 +37,7 @@ namespace gtbweb.Controllers
               public string Score {get;set;}
               [BindProperty]
               public string Designation {get;set;}
+             
             }
              
     [AllowAnonymous]

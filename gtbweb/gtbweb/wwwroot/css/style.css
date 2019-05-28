@@ -979,12 +979,12 @@ a:hover {
 }
 
 .box-comments .list-comments .comment-avatar img {
-  width: 80px;
-  height: 80px;
+  width: 30px;
+  height: 30px;
 }
 
 .box-comments .list-comments .comment-author {
-  font-size: 1.3rem;
+  font-size: 0.6rem;
 }
 
 .box-comments .list-comments .comment-details {

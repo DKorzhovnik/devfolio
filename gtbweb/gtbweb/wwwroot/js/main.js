@@ -1,8 +1,22 @@
 (function ($) {
 	"use strict";
 	var nav = $('nav');
-  var navHeight = nav.outerHeight();
-  
+	var navHeight = nav.outerHeight();
+	
+	var string = $("div[class^='str-']").text();
+	var str50 = string.substr(0,50) 
+	$("div[class^='str-']").html(str50+'...'+'<a class="readmore" href="#">readmore</a>');
+	$("div[class^='str-']").attr('data-text',string);
+	
+	$('.readmore').click(function(e)
+	{
+		$('.blog-'+$(this).parent().attr('value'))[0].click();
+			e.preventDefault();
+			//$(this).parent().html($(this).parent().attr('data-text'))
+	
+	})
+	
+
   $('.navbar-toggler').on('click', function() {
     if( ! $('#mainNav').hasClass('navbar-reduce')) {
       $('#mainNav').addClass('navbar-reduce');
@@ -118,5 +132,6 @@
 			}
 		}
 	});
+
 
 })(jQuery);

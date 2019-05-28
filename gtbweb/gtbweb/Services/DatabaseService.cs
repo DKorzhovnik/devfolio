@@ -19,12 +19,14 @@ namespace gtbweb.Services
         {    List<SelectListItem> GetSkills();
              Profile GetProfile(string userid);
              List<ProficiencyViewModel> GetProficiency(string userid);
+             List<RecentPostViewModel> GetRecentPosts(string userid);
              ServiceCollectionViewModel GetService(string userid);
              BlogCollectionViewModel GetBlogs(string userid);
-             BlogPageViewModel GetBlogPage(int? blogpageid);
+             BlogPageViewModel GetBlogPage(int? blogpageid,string userid);
              PortfolioCollectionViewModel  GetPortfolio(string userid);
              int CreateBlogPage(int profileid);
              void SaveBlogText(string Editortext, string pageid);
+             void SaveTitle(string Title, string pageid);
              void SaveAbout(string about, string userid);
              void SaveDesignation(string designation, string userid);
              void SaveProficiency(int skillid,int score, int profileid);
@@ -249,13 +251,13 @@ namespace gtbweb.Services
                                             BlogPageID=s.BlogPageID,
                                             BlogImage=s.HeaderImage,
                                             Title=s.HeaderTitle,
-                                            FullName=s.Profile.UserID,
+                                            FullName=s.Profile.FirstName+" "+s.Profile.LastName,
                                             PageTag="Alex",
                                             ReadTime=30,
                                             TagCollection=temp.tagcollection,
                                             CommentCount=30,
                                             Text=s.Text,
-                                            RecentPost=temp.posts,
+                                            RecentPost=GetRecentPosts(userid),
                                             Comments=temp.commentlist
                                             }        
                                             ).ToList();
@@ -271,8 +273,21 @@ namespace gtbweb.Services
                    var query = new Seed().portfolios;
                    return query;
              }
+               public List<RecentPostViewModel> GetRecentPosts(string userid)
+             {
+                   IEnumerable<BlogPage> collections = _theContext.BlogPages;
+                   
+                   var querys = collections.Where(s =>s.Profile.UserID== userid)
+                                           .Select(s=>
+                                           new RecentPostViewModel{
+                                            PostID=s.BlogPageID,
+                                            Title=s.HeaderTitle
+                                           }).ToList();
+                  // var query = new Seed().portfolios;
+                   return querys;
+             }
             
-              public BlogPageViewModel GetBlogPage(int? blogpageid)
+              public BlogPageViewModel GetBlogPage(int? blogpageid,string userid)
              {
                    IEnumerable<BlogPage> collections = _theContext.BlogPages;
                    IEnumerable<Service> services = _theContext.Services;
@@ -283,6 +298,7 @@ namespace gtbweb.Services
                    pageview.BlogImage=blogpage.HeaderImage;
                    pageview.Text=blogpage.Text;
                    pageview.BlogPageID=blogpage.BlogPageID;
+                   pageview.RecentPost=GetRecentPosts(userid);
                    /* new BlogPageViewModel{ProfileID=1,
                                       BlogImage="/img/testimonial-2.jpg",
                                       Title="Alex",
@@ -313,6 +329,12 @@ namespace gtbweb.Services
              {
               var profile =  _theContext.Profiles.Where(s => s.UserID == userid).FirstOrDefault<Profile>();
               profile.Designation = designation;
+              _theContext.SaveChanges();
+             }
+               public void SaveTitle(string Title,string pageid)
+             {
+             var page =  _theContext.BlogPages.Where(s => s.BlogPageID == Convert.ToInt32(pageid)).FirstOrDefault<BlogPage>();
+              page.HeaderTitle=Title;
               _theContext.SaveChanges();
              }
               public void SaveProficiency(int skillid,int score,int profileid)

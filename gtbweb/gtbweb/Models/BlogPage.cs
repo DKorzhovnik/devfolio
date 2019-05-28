@@ -9,6 +9,7 @@ namespace gtbweb.Models
         public int BlogPageID { get; set; }
         public int ProfileID { get; set; }
         public int TagID { get; set; }
+        //public int CategoryID { get; set; }
 
         public string    HeaderTitle { get; set; } 
         public string   HeaderImage { get; set; } 

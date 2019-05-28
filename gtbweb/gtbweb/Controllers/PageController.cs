@@ -8,9 +8,13 @@ using Microsoft.AspNetCore.Mvc;
 using gtbweb.Models;
 using gtbweb.Services;
 using System.Linq;
+using System.Net.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
+using Unsplasharp;
+using Unsplasharp.Models;
 
 namespace gtbweb.Controllers
 {
@@ -20,6 +24,8 @@ namespace gtbweb.Controllers
               public string Editor{get;set;}
              [BindProperty]
               public string Pageid{get;set;}
+              [BindProperty]
+              public string Title{get;set;}
     }
     public class PageController : Controller
     {   private readonly UserManager<IdentityUser> _userManager;
@@ -42,7 +48,7 @@ namespace gtbweb.Controllers
 
         public IActionResult Page(int? id)
         {
-            var page =  _dataservice.GetBlogPage(id);
+            var page =  _dataservice.GetBlogPage(id,_userManager.GetUserId(User));
                 ViewBag.PageDetails = page; 
               
             return View();
@@ -53,7 +59,29 @@ namespace gtbweb.Controllers
                 
             return LocalRedirect(Url.Content("~/Page/Page/"+Input.Pageid));
         }
-
+        public async Task<IActionResult> Image(int id)
+        {    
+          /*  Dictionary<string, string> jsonValues = new Dictionary<string, string>();
+             jsonValues.Add("client_id", "6f1f83f0399e8b91d2e5a07b05d65907c452cc90501ab0c002a6d99815c4adc5");
+           
+            var foto = await Unsplash.SendRequest(HttpMethod.Get,"https://api.unsplash.com/photos/random","6f1f83f0399e8b91d2e5a07b05d65907c452cc90501ab0c002a6d99815c4adc5",JsonConvert.SerializeObject(jsonValues));
+            //await Task.Delay(60000);
+            Console.WriteLine("helpppppppppp"); 
+*/ 
+            Unsplash photo= new Unsplash("6f1f83f0399e8b91d2e5a07b05d65907c452cc90501ab0c002a6d99815c4adc5","");
+           
+           Photo image =photo.GetCall();
+         
+             ViewBag.PageDetails.BlogImages = image;
+                
+            return LocalRedirect(Url.Content("~/Page/Page/"+id));
+        }
+         public IActionResult SaveTitle(InputPageModel Input)
+        {
+            _dataservice.SaveTitle(Input.Title,Input.Pageid);
+                
+            return LocalRedirect(Url.Content("~/Page/Page/"+Input.Pageid));
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

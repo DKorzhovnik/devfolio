@@ -16,16 +16,19 @@ using Newtonsoft.Json;
 using Unsplasharp;
 using Unsplasharp.Models;
 
+
 namespace gtbweb.Controllers
 {
     public class InputPageModel
     {
              [BindProperty]
-              public string Editor{get;set;}
+              public string editor{get;set;}
              [BindProperty]
               public string Pageid{get;set;}
               [BindProperty]
               public string Title{get;set;}
+               [BindProperty]
+              public string search{get;set;}
     }
     public class PageController : Controller
     {   private readonly UserManager<IdentityUser> _userManager;
@@ -50,12 +53,21 @@ namespace gtbweb.Controllers
         {
             var page =  _dataservice.GetBlogPage(id,_userManager.GetUserId(User));
                 ViewBag.PageDetails = page; 
+               
+              
+            return View();
+        }
+          public IActionResult Search()
+        {
+            var page =  _dataservice.GetBlogs(_userManager.GetUserId(User));
+                ViewBag.BlogCollection = page; 
+               
               
             return View();
         }
         public IActionResult Save(InputPageModel Input)
         {
-            _dataservice.SaveBlogText(Input.Editor,Input.Pageid);
+            _dataservice.SaveBlogText(Input.editor,Input.Pageid);
                 
             return LocalRedirect(Url.Content("~/Page/Page/"+Input.Pageid));
         }
@@ -69,10 +81,9 @@ namespace gtbweb.Controllers
             Console.WriteLine("helpppppppppp"); 
 */ 
             Unsplash photo= new Unsplash("6f1f83f0399e8b91d2e5a07b05d65907c452cc90501ab0c002a6d99815c4adc5","");
-           
-           Photo image =photo.GetCall();
+        
          
-             ViewBag.PageDetails.BlogImages = image;
+            _dataservice.SaveImage(photo.url,id);
                 
             return LocalRedirect(Url.Content("~/Page/Page/"+id));
         }

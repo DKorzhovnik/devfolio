@@ -146,3 +146,4 @@ C:/Users/OLUKOWI/gtbweb/gtbweb/gtbweb/obj/Debug/netcoreapp2.2/gtbweb.Views.pdb
 C:/Users/OLUKOWI/gtbweb/gtbweb/gtbweb/obj/Debug/netcoreapp2.2/gtbweb.dll
 C:/Users/OLUKOWI/gtbweb/gtbweb/gtbweb/obj/Debug/netcoreapp2.2/gtbweb.pdb
 C:/Users/OLUKOWI/gtbweb/gtbweb/gtbweb/obj/Debug/netcoreapp2.2/gtbweb.csproj.CopyComplete
+/mnt/c/users/olukowi/gtbweb/gtbweb/gtbweb/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Search.g.cshtml.cs

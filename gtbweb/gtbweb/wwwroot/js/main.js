@@ -2,11 +2,7 @@
 	"use strict";
 	var nav = $('nav');
 	var navHeight = nav.outerHeight();
-	
-	var string = $("div[class^='str-']").text();
-	var str50 = string.substr(0,50) 
-	$("div[class^='str-']").html(str50+'...'+'<a class="readmore" href="#">readmore</a>');
-	$("div[class^='str-']").attr('data-text',string);
+
 	
 	$('.readmore').click(function(e)
 	{
@@ -15,7 +11,23 @@
 			//$(this).parent().html($(this).parent().attr('data-text'))
 	
 	})
+	$.fn.descriptionfunc = function (){
+		for(var i=0;i<this.length;i++){
+	var searchstring = this[i.toString()].innerText;
+	var str200 = searchstring.substr(0,200) ;
+	this[i.toString()].innerHTML = str200+'...'+'<a class="readmore" href="#">readmore</a>';
+	//this[i.toString()].attr('data-text',searchstring);
+		}
+	};
+	$("div[class^='str-']").descriptionfunc();
+	$("div[class^='searchstr-']").descriptionfunc();
+	$('.readmore').click(function(e)
+	{
+		$('.blog-'+$(this).parent().attr('value'))[0].click();
+			e.preventDefault();
+			//$(this).parent().html($(this).parent().attr('data-text'))
 	
+	})
 
   $('.navbar-toggler').on('click', function() {
     if( ! $('#mainNav').hasClass('navbar-reduce')) {

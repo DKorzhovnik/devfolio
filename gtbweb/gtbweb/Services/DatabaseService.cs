@@ -27,6 +27,7 @@ namespace gtbweb.Services
              int CreateBlogPage(int profileid);
              void SaveBlogText(string Editortext, string pageid);
              void SaveTitle(string Title, string pageid);
+             void SaveImage(string url, int id);
              void SaveAbout(string about, string userid);
              void SaveDesignation(string designation, string userid);
              void SaveProficiency(int skillid,int score, int profileid);
@@ -335,6 +336,12 @@ namespace gtbweb.Services
              {
              var page =  _theContext.BlogPages.Where(s => s.BlogPageID == Convert.ToInt32(pageid)).FirstOrDefault<BlogPage>();
               page.HeaderTitle=Title;
+              _theContext.SaveChanges();
+             }
+              public void SaveImage(string url,int id)
+             {
+             var page =  _theContext.BlogPages.Where(s => s.BlogPageID == id).FirstOrDefault<BlogPage>();
+              page.HeaderImage=url;
               _theContext.SaveChanges();
              }
               public void SaveProficiency(int skillid,int score,int profileid)

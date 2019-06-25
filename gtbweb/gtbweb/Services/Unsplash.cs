@@ -9,6 +9,8 @@ using System.Text;
 using RestSharp;
 using RestSharp.Authenticators;
 using System;
+using Newtonsoft.Json.Linq;
+using System.Net;
 
 
 namespace gtbweb.Services
@@ -17,38 +19,28 @@ namespace gtbweb.Services
   {
     const string BaseUrl = "https://api.unsplash.com/";
 
-    readonly IRestClient _client;
+    public string url {get;set;}
 
-    string _client_id;
+     
     public Unsplash(string client_id, string secretKey)
     {
-        _client = new RestClient(BaseUrl);
-       //_client.Authenticator = new HttpBasicAuthenticator(client_id, secretKey);
-        _client_id= client_id;
-    }
-  
-public T Execute<T>(RestRequest request) where T : new()
+        
+         var restClient = new RestClient("https://api.unsplash.com/");
+
+        var restRequest = new RestRequest("photos/random?client_id=6f1f83f0399e8b91d2e5a07b05d65907c452cc90501ab0c002a6d99815c4adc5", Method.GET);
+        //restRequest.AddParameter("client_id",client_id, ParameterType.UrlSegment);
+
+        var restResponse = restClient.Execute(restRequest);
+        if(restResponse.StatusCode == HttpStatusCode.OK)
     {
-        request.AddParameter("client_id",_client_id, ParameterType.UrlSegment); // used on every request
-        var response = _client.Execute<T>(request);
-
-        if (response.ErrorException != null)
-        {
-            const string message = "Error retrieving response.  Check inner details for more info.";
-            var twilioException = new ApplicationException(message, response.ErrorException);
-            throw twilioException;
-        }
-        return response.Data;
+        dynamic jsonResponse = JsonConvert.DeserializeObject(restResponse.Content);
+       // dynamic api = JObject.Parse(jsonResponse);
+        url=jsonResponse.urls.full;
     }
-
- public Photo GetCall() 
-{
-    var request = new RestRequest("photos/random");
-    request.RootElement = "Photo";
-
-//request.AddParameter("CallSid", callSid, ParameterType.UrlSegment);
-
-    return Execute<Photo>(request);
-}
+    else
+    {
+        url="/img/testimonial-2.jpg";
+    }
+    }
  }
 }

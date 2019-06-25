@@ -80,3 +80,49 @@ System.Net.Sockets.SocketException (22): Invalid argument
 2019-05-01 17:40:57.280 +01:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for sign-out
 2019-05-01 17:40:57.283 +01:00 [DBG] Using Community as default ASP.NET Core scheme for challenge
 2019-05-01 17:40:57.285 +01:00 [DBG] Using Community as default ASP.NET Core scheme for forbid
+2019-05-31 09:01:59.650 +01:00 [INF] Starting IdentityServer4 version 2.3.2.0
+2019-05-31 09:02:02.614 +01:00 [INF] Using the default authentication scheme Community for IdentityServer
+2019-05-31 09:02:02.616 +01:00 [ERR] Authentication scheme Community is configured for IdentityServer, but it is not a scheme that supports signin (like cookies). Either configure the default authentication scheme with cookies or set the CookieAuthenticationScheme on the IdentityServerOptions.
+2019-05-31 09:02:02.617 +01:00 [DBG] Using Community as default ASP.NET Core scheme for authentication
+2019-05-31 09:02:02.617 +01:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for sign-in
+2019-05-31 09:02:02.618 +01:00 [DBG] Using Identity.Application as default ASP.NET Core scheme for sign-out
+2019-05-31 09:02:02.618 +01:00 [DBG] Using Community as default ASP.NET Core scheme for challenge
+2019-05-31 09:02:02.619 +01:00 [DBG] Using Community as default ASP.NET Core scheme for forbid
+2019-05-31 13:12:16.225 +01:00 [DBG] Found ["openid","profile","admin_ui_profile","admin_ui_public","admin_api","admin_ui_webhooks"] as all scopes in database
+2019-05-31 13:12:16.225 +01:00 [DBG] Found ["openid","profile","admin_ui_profile","admin_ui_public","admin_api","admin_ui_webhooks"] as all scopes in database
+2019-05-31 19:53:09.657 +01:00 [WRN] Connection processing ended abnormally.
+System.Net.Sockets.SocketException (22): Invalid argument
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketAwaitableEventArgs.<GetResult>g__ThrowSocketException|7_0(SocketError e)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketAwaitableEventArgs.GetResult()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketConnection.ProcessReceives()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketConnection.DoReceive()
+   at System.IO.Pipelines.PipeCompletion.ThrowLatchedException()
+   at System.IO.Pipelines.Pipe.GetReadResult(ReadResult& result)
+   at System.IO.Pipelines.Pipe.GetReadAsyncResult()
+   at System.IO.Pipelines.Pipe.DefaultPipeReader.GetResult(Int16 token)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)
+2019-06-01 17:10:11.445 +01:00 [WRN] Connection processing ended abnormally.
+System.Net.Sockets.SocketException (22): Invalid argument
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketAwaitableEventArgs.<GetResult>g__ThrowSocketException|7_0(SocketError e)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketAwaitableEventArgs.GetResult()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketConnection.ProcessReceives()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketConnection.DoReceive()
+   at System.IO.Pipelines.PipeCompletion.ThrowLatchedException()
+   at System.IO.Pipelines.Pipe.GetReadResult(ReadResult& result)
+   at System.IO.Pipelines.Pipe.GetReadAsyncResult()
+   at System.IO.Pipelines.Pipe.DefaultPipeReader.GetResult(Int16 token)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)
+2019-06-01 17:10:11.445 +01:00 [WRN] Connection processing ended abnormally.
+System.Net.Sockets.SocketException (22): Invalid argument
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketAwaitableEventArgs.<GetResult>g__ThrowSocketException|7_0(SocketError e)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketAwaitableEventArgs.GetResult()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketConnection.ProcessReceives()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.Internal.SocketConnection.DoReceive()
+   at System.IO.Pipelines.PipeCompletion.ThrowLatchedException()
+   at System.IO.Pipelines.Pipe.GetReadResult(ReadResult& result)
+   at System.IO.Pipelines.Pipe.GetReadAsyncResult()
+   at System.IO.Pipelines.Pipe.DefaultPipeReader.GetResult(Int16 token)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequests[TContext](IHttpApplication`1 application)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http.HttpProtocol.ProcessRequestsAsync[TContext](IHttpApplication`1 application)

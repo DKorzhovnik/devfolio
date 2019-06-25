@@ -64,3 +64,26 @@ body {
 display:none;
 }
 
+.search-description{
+word-wrap: anywhere;
+}
+.search-title{
+
+}
+
+.search-item{
+
+}
+.search-category{
+
+}
+.search-category-box{
+
+}
+.search-body{
+  font-size: 1.3rem;
+  text-align: left;
+}
+.lead{
+  word-wrap: anywhere;
+}

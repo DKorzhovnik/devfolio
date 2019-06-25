@@ -16,14 +16,4 @@ $( '#ModalLoginForm' ).modal( {
 	// Do not show modal when innitialized.
 	show: false
 } );
-var string = $('.str').text();
-var str50 = string.substr(0,100) 
-$('.str').html(str50+'...'+'<a class="readmore" href="#">readmore</a>');
-$('.str').attr('data-text',string);
 
-$('.readmore').click(function(e)
-{
-    e.preventDefault();
-    $(this).parent().html($(this).parent().attr('data-text'))
-
-})

@@ -32,7 +32,7 @@
                 </div>
               </div>
               <h3 class="card-title"><a class="nav-link js-scroll"  asp-area="" asp-controller="Page" asp-action="Page" asp-route-id="@x.BlogPageID">@x.Title</a></h3>
-              <p class="card-description ">
+              <p class="card-description">
                 <div class="str-@x.BlogPageID" value = @x.BlogPageID>
                @Html.Raw(@x.Text)
               </div>
@@ -52,6 +52,7 @@
           </div>
         </div>
     }
+ 
         <div class="col-md-4">
           <div class="card card-blog">
             <div class="card-img">

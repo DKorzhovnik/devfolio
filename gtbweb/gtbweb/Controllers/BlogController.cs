@@ -33,10 +33,20 @@ namespace gtbweb.Controllers
         }
     
         public IActionResult Blog()
-        {
-             var blogs =  _dataservice.GetBlogs(_userManager.GetUserId(User));
-                ViewBag.BlogCollection = blogs; 
-            return View();
+        {        
+                 if (_signInManager.IsSignedIn(User))
+                 {
+                           var blogs =  _dataservice.GetBlogs(_userManager.GetUserId(User));
+                           ViewBag.BlogCollection = blogs; 
+                 }
+                 else{
+                           var blogs =  _dataservice.GetRecentBlogs(_userManager.GetUserId(User));
+                           ViewBag.BlogCollection = blogs; 
+                 }
+
+            
+                
+                return View();
         }
         public IActionResult Create()
         {    var profile =  _dataservice.GetProfile(_userManager.GetUserId(User));

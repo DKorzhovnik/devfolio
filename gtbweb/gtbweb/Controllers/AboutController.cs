@@ -33,7 +33,7 @@ namespace gtbweb.Controllers
               public string About {get;set;}
               [BindProperty]
               public string Skill {get;set;}
-             [BindProperty]
+              [BindProperty]
               public string Score {get;set;}
               [BindProperty]
               public string Designation {get;set;}

@@ -1,3 +1,7 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
 @{
     ViewData["Title"] = "Blog";
 }
@@ -7,7 +11,7 @@
         <div class="col-sm-12">
           <div class="title-box text-center">
             <h3 class="title-a">
-              Blog
+              Blogs
             </h3>
             <p class="subtitle-a">
              @ViewBag.BlogCollection.Slogan
@@ -17,6 +21,25 @@
         </div>
       </div>
       <div class="row">
+                  @if (SignInManager.IsSignedIn(User))
+{
+        <div class="col-md-4">
+          <div class="card card-blog">
+            <div class="card-img">
+              <a class="nav-link js-scroll"  asp-area="" asp-controller="Blog" asp-action="Create"><img src="~/img/post-2.jpg" alt="" class="img-fluid"><span class="glyphicon glyphicon-pencil"></span></a>
+            </div>
+            <div class="card-body">
+              <div class="card-category-box">
+                <div class="card-category">
+                  <h6 class="category">Add Post</h6>
+                </div>
+              </div>
+              
+            </div>
+           
+          </div>
+        </div>
+}
       @foreach(var x in @ViewBag.BlogCollection.BlogView)
       {
         <div class="col-md-4">
@@ -52,24 +75,7 @@
           </div>
         </div>
     }
- 
-        <div class="col-md-4">
-          <div class="card card-blog">
-            <div class="card-img">
-              <a class="nav-link js-scroll"  asp-area="" asp-controller="Blog" asp-action="Create"><img src="~/img/post-2.jpg" alt="" class="img-fluid"><span class="glyphicon glyphicon-pencil"></span></a>
-            </div>
-            <div class="card-body">
-              <div class="card-category-box">
-                <div class="card-category">
-                  <h6 class="category">Add Post</h6>
-                </div>
-              </div>
-              
-            </div>
-           
-          </div>
-        </div>
-        
+  
       </div>
     </div>
   </section>

@@ -14590,11 +14590,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/mnt/c/users/olukowi/gtbweb/gtbweb/gtbweb/gtbweb.csproj",
+      "projectUniqueName": "/mnt/c/Users/OLUKOWI/gtbweb/gtbweb/gtbweb/gtbweb.csproj",
       "projectName": "gtbweb",
-      "projectPath": "/mnt/c/users/olukowi/gtbweb/gtbweb/gtbweb/gtbweb.csproj",
+      "projectPath": "/mnt/c/Users/OLUKOWI/gtbweb/gtbweb/gtbweb/gtbweb.csproj",
       "packagesPath": "/home/kowi/.nuget/packages/",
-      "outputPath": "/mnt/c/users/olukowi/gtbweb/gtbweb/gtbweb/obj/",
+      "outputPath": "/mnt/c/Users/OLUKOWI/gtbweb/gtbweb/gtbweb/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"

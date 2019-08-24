@@ -25,8 +25,8 @@ namespace gtbweb.webapi.Controllers
         {
              var pi =  _dataservice.GetSkills();
 
-           // return new string[] { pi.Designation, pi.About };
-            return new string[] {" pi.Designation", "pi.About" };
+           /return new string[] { pi.Designation, pi.About };
+            //return new string[] {" pi.Designation", "pi.About" };
         }
 
         // GET api/profile/5

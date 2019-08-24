@@ -22,6 +22,8 @@ namespace gtbweb.Services
              List<RecentPostViewModel> GetRecentPosts(string userid);
              ServiceCollectionViewModel GetService(string userid);
              BlogCollectionViewModel GetBlogs(string userid);
+             BlogCollectionViewModel SearchBlogs(string search,string userid);
+             BlogCollectionViewModel GetRecentBlogs(string userid);
              BlogPageViewModel GetBlogPage(int? blogpageid,string userid);
              PortfolioCollectionViewModel  GetPortfolio(string userid);
              int CreateBlogPage(int profileid);
@@ -240,12 +242,64 @@ namespace gtbweb.Services
                    query.ServiceView = querys;
                    return query;
              }
+              public BlogCollectionViewModel SearchBlogs(string search,string userid)
+             {
+                   IEnumerable<BlogCollection> collections = _theContext.BlogCollections;
+                   IEnumerable<Service> services = _theContext.Services;
+                   Seed temp= new Seed();
+                   var querys = collections.Where(s =>s.BlogPage.HeaderTitle.Contains(search))
+                                            .Select(s=>s.BlogPage)
+                                            .Select(s=> 
+                                            new BlogPageViewModel{ProfileID=1,
+                                            BlogPageID=s.BlogPageID,
+                                            BlogImage=s.HeaderImage,
+                                            Title=s.HeaderTitle,
+                                            FullName=s.Profile.FirstName+" "+s.Profile.LastName,
+                                            PageTag="Alex",
+                                            ReadTime=30,
+                                            TagCollection=temp.tagcollection,
+                                            CommentCount=30,
+                                            Text=s.Text,
+                                            RecentPost=GetRecentPosts(userid),
+                                            Comments=temp.commentlist
+                                            }        
+                                            ).ToList();
+                   var query = new Seed().blogs;
+                   query.BlogView = querys;
+                   return query;
+             }
               public BlogCollectionViewModel GetBlogs(string userid)
              {
                    IEnumerable<BlogCollection> collections = _theContext.BlogCollections;
                    IEnumerable<Service> services = _theContext.Services;
                    Seed temp= new Seed();
                    var querys = collections.Where(s =>s.Profile.UserID == userid )
+                                            .Select(s=>s.BlogPage)
+                                            .Select(s=> 
+                                            new BlogPageViewModel{ProfileID=1,
+                                            BlogPageID=s.BlogPageID,
+                                            BlogImage=s.HeaderImage,
+                                            Title=s.HeaderTitle,
+                                            FullName=s.Profile.FirstName+" "+s.Profile.LastName,
+                                            PageTag="Alex",
+                                            ReadTime=30,
+                                            TagCollection=temp.tagcollection,
+                                            CommentCount=30,
+                                            Text=s.Text,
+                                            RecentPost=GetRecentPosts(userid),
+                                            Comments=temp.commentlist
+                                            }        
+                                            ).ToList();
+                   var query = new Seed().blogs;
+                   query.BlogView = querys;
+                   return query;
+             }
+               public BlogCollectionViewModel GetRecentBlogs(string userid)
+             {
+                   IEnumerable<BlogCollection> collections = _theContext.BlogCollections;
+                   IEnumerable<Service> services = _theContext.Services;
+                   Seed temp= new Seed();
+                   var querys = collections.OrderByDescending(s=>s.BlogPage.CreationDate)
                                             .Select(s=>s.BlogPage)
                                             .Select(s=> 
                                             new BlogPageViewModel{ProfileID=1,
@@ -369,8 +423,7 @@ namespace gtbweb.Services
                   HeaderImage="/img/testimonial-2.jpg",
                   CreationDate=timestamp,
                   LastEditDate=DateTime.Now,
-                  Text="Fill in the post"
-                  
+                  Text="<h2 class=\"dfree-header mce-content-body\" contenteditable=\"true\" style=\"position: relative;\" spellcheck=\"false\">The latest and greatest from TinyMCE</h2><br/><div class=\"dfree-body mce-content-body\" contenteditable=\"true\" style=\"position: relative;\" spellcheck=\"false\"><p><img src=\"https://tiny.cloud/images/medium-pic.jpg\" style=\"display: block; margin-left: auto; margin-right: auto; width: 100%;\" data-mce-style=\"display: block; margin-left: auto; margin-right: auto;\" data-mce-selected=\"1\"></p><br/><h2>The world’s first rich text editor in the cloud</h2><p>Have you heard about Tiny Cloud?   It’s the first step in our journey to help you deliver great content creation experiences, no matter your level of expertise. 50,000 developers already agree. They get free access to our global CDN, image proxy services and auto updates to the TinyMCE editor. They’re also ready for some exciting updates coming soon.</p>  <p>One of these enhancements is <strong>Tiny Drive</strong>: imagine file management for TinyMCE, in the cloud, made super easy. Learn more at <a href='https://www.tiny.cloud/tinydrive/'>tiny.cloud/tinydrive</a>, where you’ll find a working demo and an opportunity to provide feedback to the product team. </p><h3>An editor for every project</h3> <p>  Here are some of our customer’s most common use cases for TinyMCE:  <ul><li>Content Management Systems (<em>e.g. WordPress, Umbraco</em>)</li> <li>Learning Management Systems (<em>e.g. Blackboard</em>)</li>  <li>Customer Relationship Management and marketing automation (<em>e.g. Marketo</em>)</li> <li>Email marketing (<em>e.g. Constant Contact</em>)</li><li>Content creation in SaaS systems (<em>e.g. Eventbrite, Evernote, GoFundMe, Zendesk</em>)</li></ul> </p> <p>  And those use cases are just the start. TinyMCE is incredibly flexible, and with hundreds of APIs there’s likely a solution for your editor project.    If you haven’t experienced Tiny Cloud, get started today.   You’ll even get a free trial of our premium plugins – no credit card required! </p></div>"
                };
             blogpagecontext.Add(blogitem);
               _theContext.SaveChanges();

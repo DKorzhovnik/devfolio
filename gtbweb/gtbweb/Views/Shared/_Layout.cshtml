@@ -34,6 +34,16 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
+     <script>
+      tinymce.init({
+    selector: 'textarea',
+    plugins: [ 'quickbars' ],
+    toolbar: false,
+    menubar: false,
+    inline: true
+});
+ </script>
      <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     </environment>
@@ -63,16 +73,13 @@
       <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
         <ul class="navbar-nav flex-grow-1">
           <li class="nav-item">
-            <a class="nav-link js-scroll"  asp-area="" asp-controller="About" asp-action="About">My Portfolio</a>
+            <a class="nav-link js-scroll"  asp-area="" asp-controller="About" asp-action="About">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll"  asp-area="" asp-controller="Service" asp-action="Service">Services</a>
+            <a class="nav-link js-scroll"  asp-area="" asp-controller="Work" asp-action="Work">Portfolio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll"  asp-area="" asp-controller="Work" asp-action="Work">Work</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll"  asp-area="" asp-controller="Blog" asp-action="Blog">Blog</a>
+            <a class="nav-link js-scroll"  asp-area="" asp-controller="Blog" asp-action="Blog">My Blog</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll"  asp-area="" asp-controller="Contact" asp-action="Contact">Contact</a>
@@ -85,6 +92,12 @@ else
 {
     <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
         <ul class="navbar-nav flex-grow-1">
+          <li class="nav-item">
+            <a class="nav-link js-scroll"  asp-area="" asp-controller="Service" asp-action="Service">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll"  asp-area="" asp-controller="Blog" asp-action="Blog">Blogs</a>
+          </li>
         </ul>
         <partial name="_LoginPartial" />
       </div>

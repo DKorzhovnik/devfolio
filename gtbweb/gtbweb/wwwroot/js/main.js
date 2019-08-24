@@ -2,6 +2,10 @@
 	"use strict";
 	var nav = $('nav');
 	var navHeight = nav.outerHeight();
+	$('#event').click(function () {
+	$('#editor').attr('value',$('.article-content')[0].innerHTML);
+	
+});
 
 	
 	$('.readmore').click(function(e)

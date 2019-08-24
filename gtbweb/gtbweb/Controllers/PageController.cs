@@ -57,9 +57,9 @@ namespace gtbweb.Controllers
               
             return View();
         }
-          public IActionResult Search()
+          public IActionResult Search(InputPageModel Input)
         {
-            var page =  _dataservice.GetBlogs(_userManager.GetUserId(User));
+            var page =  _dataservice.SearchBlogs(Input.search, _userManager.GetUserId(User));
                 ViewBag.BlogCollection = page; 
                
               

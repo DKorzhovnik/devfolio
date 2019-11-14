@@ -1,5 +1,5 @@
 # devfolio
-DevFolio is an implementation of the DevFolio – Bootstrap Portfolio HTML Template in ASP.NET Core.
+DevFolio is an implementation of a Bootstrap Portfolio HTML Template in ASP.NET Core.
 
 Preview:https://bootstrapmade.com/demo/DevFolio .
 

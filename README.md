@@ -5,13 +5,13 @@ Preview : https://bootstrapmade.com/demo/DevFolio .
 
 Implementation includes:
 
--Identity Server for Identity,Authentication and Access management.
+- Identity Server for Identity,Authentication and Access management.
 
--BlazorServer Client.
+- BlazorServer Client.
 
--WebApi  implemented in .Net Core.
+- WebApi  implemented in .Net Core.
 
--Test Suites.
+- Test Suites.
 
 - Using Entity FrameWork.
 

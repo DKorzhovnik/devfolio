@@ -13,7 +13,7 @@ Implementation includes:
 
 - Test Suites.
 
-- Using Entity FrameWork.
+- AppCore Using Entity FrameWork.
 
 The services are containerized using docker and hosted seperately on the Heroku Cloud Platform.
 

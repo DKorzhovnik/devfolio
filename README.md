@@ -5,15 +5,15 @@ Preview : https://bootstrapmade.com/demo/DevFolio .
 
 Implementation includes:
 
-Identity Server for Identity,Authentication and Access management.
+-Identity Server for Identity,Authentication and Access management.
 
-BlazorServer Client.
+-BlazorServer Client.
 
-WebApi  implemented in .Net Core.
+-WebApi  implemented in .Net Core.
 
-Test Suites.
+-Test Suites.
 
-Core Using Entity FrameWork.
+- Using Entity FrameWork.
 
 The services are containerized using docker and hosted seperately on the Heroku Cloud Platform.
 

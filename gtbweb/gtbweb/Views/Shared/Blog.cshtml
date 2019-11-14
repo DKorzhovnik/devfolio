@@ -26,7 +26,7 @@
         <div class="col-md-4">
           <div class="card card-blog">
             <div class="card-img">
-              <a class="nav-link js-scroll"  asp-area="" asp-controller="Blog" asp-action="Create"><img src="~/img/post-2.jpg" alt="" class="img-fluid"><span class="glyphicon glyphicon-pencil"></span></a>
+              <a class="nav-link js-scroll"  asp-area="" asp-controller="Blog" asp-action="Create"><span class="glyphicon glyphicon-plus add-post"></span></a>
             </div>
             <div class="card-body">
               <div class="card-category-box">
@@ -45,7 +45,7 @@
         <div class="col-md-4">
           <div class="card card-blog">
             <div class="card-img">
-              <a class="nav-link js-scroll blog-@x.BlogPageID"  asp-area="" asp-controller="Page" asp-action="Page" asp-route-id="@x.BlogPageID"><img src=@x.BlogImage alt="" class="img-fluid"></a>
+              <a class="nav-link js-scroll blog-@x.BlogPageID"  asp-area="" asp-controller="Page" asp-action="Page" asp-route-id="@x.BlogPageID"><img src=@x.BlogImage alt="" class="img-fluid blog-card"></a>
             </div>
             
             <div class="card-body">
@@ -54,9 +54,9 @@
                   <h6 class="category">@x.PageTag</h6>
                 </div>
               </div>
-              <h3 class="card-title"><a class="nav-link js-scroll"  asp-area="" asp-controller="Page" asp-action="Page" asp-route-id="@x.BlogPageID">@x.Title</a></h3>
-              <p class="card-description">
-                <div class="str-@x.BlogPageID" value = @x.BlogPageID>
+              <h3 class="card-title"><a class="nav-link js-scroll title-card"  asp-area="" asp-controller="Page" asp-action="Page" asp-route-id="@x.BlogPageID">@x.Title</a></h3>
+              <p class="card-description ">
+                <div class="str-@x.BlogPageID description-text" value = @x.BlogPageID>
                @Html.Raw(@x.Text)
               </div>
               </p>

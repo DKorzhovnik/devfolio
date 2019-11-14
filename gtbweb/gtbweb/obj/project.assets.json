@@ -14590,11 +14590,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/mnt/c/Users/OLUKOWI/gtbweb/gtbweb/gtbweb/gtbweb.csproj",
+      "projectUniqueName": "/mnt/c/users/olukowi/gtbweb/gtbweb/gtbweb/gtbweb.csproj",
       "projectName": "gtbweb",
-      "projectPath": "/mnt/c/Users/OLUKOWI/gtbweb/gtbweb/gtbweb/gtbweb.csproj",
+      "projectPath": "/mnt/c/users/olukowi/gtbweb/gtbweb/gtbweb/gtbweb.csproj",
       "packagesPath": "/home/kowi/.nuget/packages/",
-      "outputPath": "/mnt/c/Users/OLUKOWI/gtbweb/gtbweb/gtbweb/obj/",
+      "outputPath": "/mnt/c/users/olukowi/gtbweb/gtbweb/gtbweb/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"
@@ -14683,10 +14683,16 @@
           }
         },
         "imports": [
-          "net461"
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
         ],
         "assetTargetFallback": true,
-        "warn": true
+        "warn": true,
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -14695,7 +14701,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'EntityFramework 6.2.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.2'. This package may not be fully compatible with your project.",
+      "message": "Package 'EntityFramework 6.2.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.2'. This package may not be fully compatible with your project.",
       "libraryId": "EntityFramework",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.2"

@@ -19,7 +19,7 @@
 		for(var i=0;i<this.length;i++){
 	var searchstring = this[i.toString()].innerText;
 	var str200 = searchstring.substr(0,200) ;
-	this[i.toString()].innerHTML = str200+'...'+'<a class="readmore" href="#">readmore</a>';
+	this[i.toString()].innerHTML = str200+'  '+'\n'+'<a class="readmore" href="#">readmore</a>';
 	//this[i.toString()].attr('data-text',searchstring);
 		}
 	};

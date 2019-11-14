@@ -33,7 +33,7 @@ namespace gtbweb.IdentityServer
                 // client credentials flow client
                 new Client
                 {
-                    ClientId = "client",
+                    ClientId = "client1",
                     ClientName = "Client Credentials Client",
 
                     AllowedGrantTypes = GrantTypes.ClientCredentials,

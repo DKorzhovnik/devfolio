@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gtbweb", "gtbweb", "{84F813A5-6452-422B-BCA1-A881A4C0DA4E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gtbweb", "gtbweb\gtbweb\gtbweb.csproj", "{7B04B9EA-D6B3-4917-9399-2B431F068BD9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gtbweb.IdentityServer", "gtbweb.IdentityServer\gtbweb.IdentityServer.csproj", "{B0F9D09C-6FC4-4394-8DB9-FCD953CF4BCB}"
@@ -12,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gtbweb.test", "gtbweb.test\gtbweb.test.csproj", "{2117A174-4815-431B-A10B-94F901A4F29A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gtbweb.webapi", "gtbweb.webapi\gtbweb.webapi.csproj", "{95A814E6-6F5D-48C0-9C64-5785DFF74B08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gtbweb.blazor", "gtbweb.blazor\gtbweb.blazor.csproj", "{E5582F79-905B-4B80-A93A-A8884495EA7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,6 +74,18 @@ Global
 		{95A814E6-6F5D-48C0-9C64-5785DFF74B08}.Release|x64.Build.0 = Release|Any CPU
 		{95A814E6-6F5D-48C0-9C64-5785DFF74B08}.Release|x86.ActiveCfg = Release|Any CPU
 		{95A814E6-6F5D-48C0-9C64-5785DFF74B08}.Release|x86.Build.0 = Release|Any CPU
+		{E5582F79-905B-4B80-A93A-A8884495EA7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5582F79-905B-4B80-A93A-A8884495EA7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5582F79-905B-4B80-A93A-A8884495EA7D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E5582F79-905B-4B80-A93A-A8884495EA7D}.Debug|x64.Build.0 = Debug|Any CPU
+		{E5582F79-905B-4B80-A93A-A8884495EA7D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E5582F79-905B-4B80-A93A-A8884495EA7D}.Debug|x86.Build.0 = Debug|Any CPU
+		{E5582F79-905B-4B80-A93A-A8884495EA7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5582F79-905B-4B80-A93A-A8884495EA7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5582F79-905B-4B80-A93A-A8884495EA7D}.Release|x64.ActiveCfg = Release|Any CPU
+		{E5582F79-905B-4B80-A93A-A8884495EA7D}.Release|x64.Build.0 = Release|Any CPU
+		{E5582F79-905B-4B80-A93A-A8884495EA7D}.Release|x86.ActiveCfg = Release|Any CPU
+		{E5582F79-905B-4B80-A93A-A8884495EA7D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7B04B9EA-D6B3-4917-9399-2B431F068BD9} = {84F813A5-6452-422B-BCA1-A881A4C0DA4E}

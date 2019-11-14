@@ -168,4 +168,31 @@ word-wrap: anywhere;
 .demo-dfree .dfree-body tr {
   border: 1px solid #696969;
 }
+.glyphicon.glyphicon.add-post
+{
+  font-size:100px;
+  display: block;
+  text-align: center;
+  transition: 0.1s ease;
+  padding: 60px;
+  box-sizing:inherit;
+  
 
+}
+.glyphicon.glyphicon.add-post:hover
+{
+  transform: scale(1.5, 1.5);
+}
+.blog-card{
+  width: auto;
+  height: 150px;
+}
+.description-text
+{
+  height: 120px;
+  display: block;
+  text-align: center;
+}
+.title-card{
+height: 80px;
+}

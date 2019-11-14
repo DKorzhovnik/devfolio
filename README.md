@@ -1,7 +1,9 @@
 # devfolio
-DevFolio is an implementation of the DevFolio – Bootstrap Portfolio HTML Template previewed at https://bootstrapmade.com/demo/DevFolio in ASP.NET core.
+DevFolio is an implementation of the DevFolio – Bootstrap Portfolio HTML Template in ASP.NET Core.
 
-implementation includes
+Preview:https://bootstrapmade.com/demo/DevFolio .
+
+Implementation includes:
 
 Identity Server 4 Project for Identity, Authentication and Access management.
 BlazorServer Client Project.

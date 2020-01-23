@@ -18,3 +18,5 @@ Implementation includes:
 The services are containerized using docker and hosted seperately on the Heroku Cloud Platform.
 
 Demo can be viewed at https://devfolioapp.herokuapp.com.
+
+Requires dotnet 3.0.

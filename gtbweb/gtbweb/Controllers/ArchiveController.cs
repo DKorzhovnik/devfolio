@@ -8,19 +8,29 @@ using Microsoft.AspNetCore.Mvc;
 using gtbweb.Models;
 using gtbweb.Services;
 using System.Linq;
+using System.Net.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
+using Unsplasharp;
+using Unsplasharp.Models;
+
 
 namespace gtbweb.Controllers
 {
-    public class ServiceController : Controller
+    public class InputArchiveModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
+
+               [BindProperty]
+              public int id{get;set;}
+    }
+    public class ArchiveController : Controller
+    {   private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private IDatabaseService  _dataservice;
         
-         public ServiceController(IDatabaseService  dataservice,UserManager<IdentityUser> userManager,
+         public ArchiveController(IDatabaseService  dataservice,UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager)
         {
                _dataservice = dataservice; 
@@ -33,13 +43,23 @@ namespace gtbweb.Controllers
         {
             return View();
         }
-      //  [NoDirectAccess]
-        public IActionResult Service()
-        {
-             var service =  _dataservice.GetService(_userManager.GetUserId(User));
-                ViewBag.ServiceDetails = service; 
 
-            return View();
+        
+          public IActionResult SearchDateArchive(int? id)
+        {
+            var page =  _dataservice.SearchDateArchive(id, _userManager.GetUserId(User));
+                ViewBag.BlogCollection = page; 
+               
+              
+            return View("~/Views/Shared/Archive.cshtml");
+        }
+          public IActionResult SearchCategoryArchive(int? id)
+        {
+            var page =  _dataservice.SearchCategoryArchive(id, _userManager.GetUserId(User));
+                ViewBag.BlogCollection = page; 
+               
+              
+            return View("~/Views/Shared/Archive.cshtml");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

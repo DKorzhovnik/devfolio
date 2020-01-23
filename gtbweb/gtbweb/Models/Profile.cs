@@ -18,7 +18,7 @@ namespace gtbweb.Models
         public DateTime RegistrationDate { get; set; }
         public string Designation { get; set; }
         public virtual ICollection<Proficiency> Proficiencies { get; set; }
-        
+        public virtual ICollection<BlogCollection> BlogCollections { get; set; }
      
     }
 }

@@ -102,12 +102,13 @@
                        <h6>By Date</h6>
                         <div class="sidebar-content">
                           <ul class="list-sidebar">
+                           @foreach (var x in @ViewBag.PageDetails.Archive.DateArchive)
+                      {
                             <li>
-                              <a href="#">September, 2017.</a>
+                              <a asp-controller="Archive" asp-action="SearchDateArchive" asp-route-id="@x.DateArchiveID">@x.DateArchiveName</a>
                             </li>
-                            <li>
-                              <a href="#">April, 2017.</a>
-                            </li>
+                      }
+                            
                           </ul>
                         </div>
                       </div>
@@ -115,15 +116,12 @@
                         <h6>By Category</h6>
                           <div class="sidebar-content">
                             <ul class="list-sidebar">
-                              <li>
-                                <a href="#">Photography</a>
-                              </li>
-                              <li>
-                                <a href="#">Web Design</a>
-                              </li>
-                              <li>
-                                <a href="#">Desktop Publishing</a>
-                              </li>
+                                    @foreach (var x in @ViewBag.PageDetails.Archive.CategoryArchive)
+                      {
+                            <li>
+                              <a asp-controller="Archive" asp-action="SearchCategoryArchive" asp-route-id="@x.CategoryArchiveID">@x.CategoryName</a>
+                            </li>
+                      }
                             </ul>
                           </div>
                       </div>

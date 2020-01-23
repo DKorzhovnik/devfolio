@@ -7,20 +7,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using gtbweb.Models;
 using gtbweb.Services;
-using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
-
 namespace gtbweb.Controllers
 {
-    public class ServiceController : Controller
+    public class VideoController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private IDatabaseService  _dataservice;
         
-         public ServiceController(IDatabaseService  dataservice,UserManager<IdentityUser> userManager,
+        public VideoController(IDatabaseService  dataservice,UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager)
         {
                _dataservice = dataservice; 
@@ -33,14 +31,21 @@ namespace gtbweb.Controllers
         {
             return View();
         }
-      //  [NoDirectAccess]
-        public IActionResult Service()
-        {
-             var service =  _dataservice.GetService(_userManager.GetUserId(User));
-                ViewBag.ServiceDetails = service; 
+    
+        public IActionResult Video()
+        {        
+                 if (_signInManager.IsSignedIn(User))
+                 {
+                           var videos =  _dataservice.GetVideos(_userManager.GetUserId(User));
+                           ViewBag.VideoCollection = videos; 
+                 }
+                 
 
-            return View();
+            
+                
+                return View();
         }
+       
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -95,7 +95,7 @@
                                  @foreach (var x in @ViewBag.BlogCollection.BlogView[0].Archive.DateArchive)
                       {
                             <li>
-                              <a href="#">@x.DateArchiveName</a>
+                              <a asp-controller="Archive" asp-action="SearchDateArchive" asp-route-id="@x.DateArchiveID">@x.DateArchiveName</a>
                             </li>
                       }
                           </ul>
@@ -108,7 +108,7 @@
                                             @foreach (var x in @ViewBag.BlogCollection.BlogView[0].Archive.CategoryArchive)
                       {
                             <li>
-                              <a href="#">@x.CategoryName</a>
+                             <a asp-controller="Archive" asp-action="SearchDateArchive" asp-route-id="@x.CategoryArchiveID">@x.CategoryName</a>
                             </li>
                       }
                             </ul>

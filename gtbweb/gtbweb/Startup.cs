@@ -43,21 +43,31 @@ namespace gtbweb
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetSection("ConnectionStrings")["DefaultConnection"]));
+
                     services.AddDbContext<ServiceDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetSection("ConnectionStrings")["DefaultConnection"]));
+
                     services.AddDbContext<AboutDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetSection("ConnectionStrings")["DefaultConnection"]));
-                     
-                     
+                    
                      services.AddDbContext<BlogDbContext>(options =>
                      {
-                options.UseSqlite(Configuration.GetSection("ConnectionStrings")["DefaultConnection"]);
-                options.UseLazyLoadingProxies(true);
+                      options.UseSqlite(Configuration.GetSection("ConnectionStrings")["DefaultConnection"]);
+                      options.UseLazyLoadingProxies(true);
                      });
-                    
-                    
+                     services.AddDbContext<ArchiveDbContext>(options =>
+                     {
+                        options.UseSqlite(Configuration.GetSection("ConnectionStrings")["DefaultConnection"]);
+                        options.UseLazyLoadingProxies(true);
+                     });
+                     services.AddDbContext<VideoDbContext>(options =>
+                     {
+                        options.UseSqlite(Configuration.GetSection("ConnectionStrings")["DefaultConnection"]);
+                        options.UseLazyLoadingProxies(true);
+                     });
+                   
                      
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)

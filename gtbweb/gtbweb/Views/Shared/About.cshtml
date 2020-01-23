@@ -18,14 +18,14 @@
                 <div class="row">
                   <div class="col-sm-6 col-md-5">
                     <div class="about-img">
-                      <img src= @ViewBag.ProfileDetails.Image class="img-fluid b-shadow-a rounded-circle" alt="">
+                      <img src= @ViewBag.ProfileDetails.Image class="img-fluid b-shadow-a rounded-circle avatar-xl" alt="">
                     </div>
                   </div>
                   <div class="col-sm-6 col-md-7">
                     <div class="about-info">
-                      <p><span class="title-s">Name: </span> <span>@ViewBag.ProfileDetails.Designation </span></p>
-                      <p><span class="title-s">Profile: </span> <span>@ViewBag.ProfileDetails.Designation</span><a href="#DesignationForm" data-backdrop="false" data-toggle="modal" data-target="#DesignationForm"><span class="glyphicon glyphicon-pencil"></span></a><p>
-                      <p><span class="title-s">Email: </span> <span>@User.Identity.Name</span></p>
+                      <p><span class="title-b"></span> <span>@ViewBag.ProfileDetails.FirstName @ViewBag.ProfileDetails.LastName</span></p>
+                      <p><span class="title-s"></span> <span>@ViewBag.ProfileDetails.Designation     </span> <a href="#DesignationForm" data-backdrop="false" data-toggle="modal" data-target="#DesignationForm"><span class="glyphicon glyphicon-pencil"></span></a><p>
+                      <p><span class="title-s"></span> <span>@User.Identity.Name</span></p>
                     </div>
                   </div>
                 </div>
@@ -38,8 +38,8 @@
                      <div class="col-sm-3">
                      <a  href="#SkillForm" data-backdrop="false" data-toggle="modal" data-target="#SkillForm">Add</a>
                      </div>
-                  </div>
                    </div>
+                </div>
  @foreach(var x in @ViewBag.ProficiencyList)
       {
                   <span>@x.Skill</span> <span class="pull-right">@x.Score%</span>
@@ -60,44 +60,15 @@
                   </div>
                   
                   <p class="lead">
-                    @ViewBag.ProfileDetails.About
+                    @Html.Raw(@ViewBag.ProfileDetails.About)
                   </p>
-                  <div class="edit-panel">
-                 <textarea  name="content" id="editor">This is some sample content.</textarea>
-                <script>
-                        ClassicEditor
-                                .create( document.querySelector( '#editor' ) )
-                                
-                                .catch( error => {
-                                        console.error( error );
-                                } );
-                </script>
+                  <button id="edit-panel-trigger"type="button" class="btn btn-primary" data-backdrop="false" data-toggle="modal" data-target="#ModalLoginForm">Edit</button>
                 </div>
-                </div>
-                <button id="edit-panel-trigger"type="button" class="btn btn-primary" data-backdrop="false" data-toggle="modal" data-target="#basicModal">Edit</button>
+              </div>
+                
 
-                  <!-- The Modal -->
 
-                  
-	<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-				</div>
-				<div class="modal-body">
-					<div id="editor">
-						<p>This is sample content of <a href="https://ckeditor.com">CKEditor 5 Balloon Build</a>.</p>
 
-						<p>Now, <strong>make some text selection</strong>! :)</p>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
                   <div id="ModalLoginForm" class="modal fade" >
                       <div class="modal-dialog" role="document">
@@ -111,8 +82,11 @@
                                       <input type="hidden" name="_token" value="">
                                       <div class="form-group">
                                           <label class="control-label">About</label>
+                                          <div class="article-content">
+                                      @Html.Raw(@ViewBag.ProfileDetails.About)
+                                     </div>  
                                           <div >
-                                              <input asp-for="About" type="textarea" rows="4" cols="50" class="form-control input-lg"  >
+                                              <input asp-for="About" type="hidden">
                                           </div>
                                       </div>
                                       <div class="form-group">
@@ -174,22 +148,15 @@
                                             
                                               <div class="col-md-5">
                                                   <label class="control-label">Add a Skill</label>
-                                              </div>
-                                                <div class="col-md-6">
-                                                   <label class="control-label">Add a Score</label>
-                                              </div>
-                                         
-                                          </div>
-                                          <div class="row">
-                                            
-                                              <div class="col-md-5">
                                                    <select asp-for="Skill" asp-items="@ViewBag.SkillList" class="form-control input-lg"></select>
                                               </div>
                                                 <div class="col-md-6">
+                                                   <label class="control-label">Add a Score</label>
                                                    <input asp-for="Score" type="text" rows="4" cols="50" class="form-control input-lg">
                                               </div>
                                          
                                           </div>
+                                          
                                      </div>
                                       <div class="form-group">
                                           <div>

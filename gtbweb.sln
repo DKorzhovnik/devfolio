@@ -87,7 +87,5 @@ Global
 		{E5582F79-905B-4B80-A93A-A8884495EA7D}.Release|x86.ActiveCfg = Release|Any CPU
 		{E5582F79-905B-4B80-A93A-A8884495EA7D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{7B04B9EA-D6B3-4917-9399-2B431F068BD9} = {84F813A5-6452-422B-BCA1-A881A4C0DA4E}
-	EndGlobalSection
+	
 EndGlobal

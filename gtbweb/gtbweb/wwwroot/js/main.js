@@ -6,7 +6,7 @@
 	$('#editor').attr('value',$('.article-content')[0].innerHTML);
 	
 });
-
+    
 	
 	$('.readmore').click(function(e)
 	{
@@ -47,7 +47,7 @@
       });
     }
   });
-
+  
   // Back to top button
   $(window).scroll(function() {
     if ($(this).scrollTop() > 100) {

@@ -27,13 +27,16 @@
   <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="~/lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
   <link href="~/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  
 
   <!-- Main Stylesheet File -->
   <link href="~/css/style.css" rel="stylesheet"> <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
    
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
      <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
      <script>
       tinymce.init({
@@ -61,7 +64,13 @@
       
     <nav class="navbar navbar-b navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand js-scroll" asp-area="" asp-controller="Home" asp-action="Index">DevFolio</a>
+          @if (SignInManager.IsSignedIn(User))
+{
+      <a class="navbar-brand js-scroll" asp-area="" asp-controller="Work" asp-action="Work">DevFolio</a>
+}
+else{
+      <a class="navbar-brand js-scroll"  asp-area="" asp-controller="Home" asp-action="Index">DevFolio</a>
+}
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
         aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span></span>
@@ -72,14 +81,12 @@
 {
       <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
         <ul class="navbar-nav flex-grow-1">
+          
           <li class="nav-item">
-            <a class="nav-link js-scroll"  asp-area="" asp-controller="About" asp-action="About">Profile</a>
+            <a class="nav-link js-scroll"  asp-area="" asp-controller="Video" asp-action="Video">Videos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll"  asp-area="" asp-controller="Work" asp-action="Work">Portfolio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll"  asp-area="" asp-controller="Blog" asp-action="Blog">My Blog</a>
+            <a class="nav-link js-scroll"  asp-area="" asp-controller="Blog" asp-action="Blog">Posts</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll"  asp-area="" asp-controller="Contact" asp-action="Contact">Contact</a>
@@ -91,14 +98,7 @@
 else
 {
     <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
-        <ul class="navbar-nav flex-grow-1">
-          <li class="nav-item">
-            <a class="nav-link js-scroll"  asp-area="" asp-controller="Service" asp-action="Service">Categories</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll"  asp-area="" asp-controller="Blog" asp-action="Blog">Blogs</a>
-          </li>
-        </ul>
+        
         <partial name="_LoginPartial" />
       </div>
 }
@@ -177,7 +177,13 @@ else
   <script src="~/lib/typed/typed.min.js"></script>
   <!-- Contact Form JavaScript File -->
   <script src="~/contactform/contactform.js"></script>
-
+  <script type="text/javascript">
+  $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox();
+            });
+   </script>
+   
   <!-- Template Main Javascript File -->
   <script src="~/js/main.js"></script>
 

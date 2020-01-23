@@ -8,19 +8,29 @@ using Microsoft.AspNetCore.Mvc;
 using gtbweb.Models;
 using gtbweb.Services;
 using System.Linq;
+using System.Net.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
+using Unsplasharp;
+using Unsplasharp.Models;
+
 
 namespace gtbweb.Controllers
 {
-    public class ServiceController : Controller
+    public class InputSearchModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
+
+               [BindProperty]
+              public string search{get;set;}
+    }
+    public class SearchController : Controller
+    {   private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private IDatabaseService  _dataservice;
         
-         public ServiceController(IDatabaseService  dataservice,UserManager<IdentityUser> userManager,
+         public SearchController(IDatabaseService  dataservice,UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager)
         {
                _dataservice = dataservice; 
@@ -33,15 +43,17 @@ namespace gtbweb.Controllers
         {
             return View();
         }
-      //  [NoDirectAccess]
-        public IActionResult Service()
-        {
-             var service =  _dataservice.GetService(_userManager.GetUserId(User));
-                ViewBag.ServiceDetails = service; 
 
+        
+          public IActionResult Search(InputSearchModel Input)
+        {
+            var page =  _dataservice.SearchBlogs(Input.search, _userManager.GetUserId(User));
+                ViewBag.BlogCollection = page; 
+               
+              
             return View();
         }
-
+       
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -22,10 +22,15 @@ namespace gtbweb.Services
              List<RecentPostViewModel> GetRecentPosts(string userid);
              ServiceCollectionViewModel GetService(string userid);
              BlogCollectionViewModel GetBlogs(string userid);
+             VideoCollectionViewModel GetVideos(string userid);
              BlogCollectionViewModel SearchBlogs(string search,string userid);
+             BlogCollectionViewModel SearchDateArchive(int? id,string userid);
+             BlogCollectionViewModel SearchCategoryArchive(int? id,string userid);
              BlogCollectionViewModel GetRecentBlogs(string userid);
              BlogPageViewModel GetBlogPage(int? blogpageid,string userid);
              PortfolioCollectionViewModel  GetPortfolio(string userid);
+             List<DateArchiveViewModel> GetDateArchive(string userid);
+             List<CategoryArchiveViewModel> GetCategoryArchive(string userid);
              int CreateBlogPage(int profileid);
              void SaveBlogText(string Editortext, string pageid);
              void SaveTitle(string Title, string pageid);
@@ -68,6 +73,12 @@ namespace gtbweb.Services
            public  string   Slogan { get; set; }
            public  ICollection<BlogPageViewModel>  BlogView { get; set; }
         }
+         public class VideoCollectionViewModel
+        {
+          
+           public  string   Slogan { get; set; }
+           public  ICollection<VideoViewModel>  VideoView { get; set; }
+        }
         public class PortfolioCollectionViewModel
         {
            public  string   Slogan { get; set; }
@@ -91,6 +102,15 @@ namespace gtbweb.Services
            //public  string  Author { get; set; }
            public  ICollection<RecentPostViewModel>  RecentPost { get; set; }
            public  ICollection<CommentViewModel>  Comments { get; set; }
+           public  ArchiveViewModel  Archive { get; set; }
+        }
+         public class VideoViewModel
+        {  public  int      ProfileID  { get; set; }
+           public  int      VideoID  { get; set; }
+           public  string   VideoFilePath  { get; set; }
+           public  string   VideoTitle { get; set; }
+           [DataType(DataType.Time)]
+           public  DateTime   VideoLength { get; set; }
         }
          public class RecentPostViewModel
          {
@@ -128,6 +148,25 @@ namespace gtbweb.Services
          {
             public  string   Title { get; set; }
          }
+         public class DateArchiveViewModel
+         {  
+            public int DateArchiveID { get; set; }
+            public string DateArchiveName { get; set; }
+           
+         }
+         public class CategoryArchiveViewModel
+         {
+            public int CategoryArchiveID { get; set; }
+            public string CategoryName { get; set; }
+           
+         }
+         public class ArchiveViewModel
+         {  
+            public int ArchiveID { get; set; }
+            public  ICollection<DateArchiveViewModel>  DateArchive { get; set; }
+            public  ICollection<CategoryArchiveViewModel>  CategoryArchive { get; set; }
+            
+         }
         public class Seed
          {
             public List<RecentPostViewModel> posts { get; set; }
@@ -142,14 +181,30 @@ namespace gtbweb.Services
             public ICollection<ServiceViewModel> servicelist { get; set; }
             public PortfolioCollectionViewModel portfolios { get; set; }
             public ICollection<PortfolioViewModel> portfoliolist { get; set; }
+            public ICollection<DateArchiveViewModel> datearchivelist {get;set;}
+            public ICollection<CategoryArchiveViewModel> categoryarchivelist {get;set;}
+            public ArchiveViewModel archiveitem {get;set;}
+            public VideoCollectionViewModel videos{get;set;}
+            public ICollection<VideoViewModel> videolist {get;set;}
             public Seed()
             {
+                    datearchivelist = new List<DateArchiveViewModel>
+                     {
+                           new DateArchiveViewModel{DateArchiveID=1,DateArchiveName="October"},
+                          new DateArchiveViewModel{DateArchiveID=1,DateArchiveName="November"},
+                     };
+                     categoryarchivelist = new List<CategoryArchiveViewModel>
+                     {
+                           new CategoryArchiveViewModel{CategoryArchiveID=1,CategoryName="October"},
+                           new CategoryArchiveViewModel{CategoryArchiveID=1,CategoryName="November"},
+                     };
                    taglist = new List<TagViewModel>
                      {
                            new TagViewModel{Title="Alex"},
                            new TagViewModel{Title="Alex"}
                      };
                     tagcollection = new TagCollectionViewModel{TagCollectionID=1,TagList=taglist };
+                    archiveitem = new ArchiveViewModel {DateArchive=datearchivelist,CategoryArchive=categoryarchivelist };
                     posts = new List<RecentPostViewModel>
                      {
                            new RecentPostViewModel{PostID=2,Title="Alex"},
@@ -167,8 +222,13 @@ namespace gtbweb.Services
                               };
                     pages = new List<BlogPageViewModel>
                      {
-                           new BlogPageViewModel{ProfileID=1,BlogPageID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=20,TagCollection=tagcollection,CommentCount=30,Text="FrontEnd",RecentPost=posts,Comments=commentlist},
-                           new BlogPageViewModel{ProfileID=1,BlogPageID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=30,TagCollection=tagcollection,CommentCount=30,Text="FrontEnd",RecentPost=posts,Comments=commentlist}
+                           new BlogPageViewModel{ProfileID=1,BlogPageID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=20,TagCollection=tagcollection,CommentCount=30,Text="FrontEnd",RecentPost=posts,Comments=commentlist,Archive=archiveitem},
+                           new BlogPageViewModel{ProfileID=1,BlogPageID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=30,TagCollection=tagcollection,CommentCount=30,Text="FrontEnd",RecentPost=posts,Comments=commentlist,Archive=archiveitem}
+                     };
+                     videolist = new List<VideoViewModel>
+                     {
+                           new VideoViewModel{ProfileID=1,VideoID=1,VideoFilePath="/img/testimonial-2.jpg",VideoTitle="Alex",VideoLength=DateTime.Parse("2005-09-01")},
+                           new VideoViewModel{ProfileID=1,VideoID=1,VideoFilePath="/img/testimonial-2.jpg",VideoTitle="Alex",VideoLength=DateTime.Parse("2005-09-01")}
                      };
                     servicelist = new List<ServiceViewModel>
                      {
@@ -180,8 +240,9 @@ namespace gtbweb.Services
                            new PortfolioViewModel{Title="Web design",Tag="Alex",PortfolioImage="/img/work-1.jpg",CreationDate=DateTime.Parse("2005-09-01")},
                            new PortfolioViewModel{Title="Web design",Tag="Alex",PortfolioImage="/img/work-2.jpg",CreationDate=DateTime.Parse("2005-09-01")}
                      };
-                   page= new BlogPageViewModel{ProfileID=1,BlogPageID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=30,TagCollection=tagcollection,CommentCount=30,Text="Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat.",RecentPost=posts,Comments=commentlist};          
+                   page= new BlogPageViewModel{ProfileID=1,BlogPageID=1,BlogImage="/img/testimonial-2.jpg",Title="Alex",FullName="Alex",PageTag="Alex",ReadTime=30,TagCollection=tagcollection,CommentCount=30,Text="Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum porta. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Nulla quis lorem ut libero malesuada feugiat.",RecentPost=posts,Comments=commentlist,Archive=archiveitem};          
                    blogs= new BlogCollectionViewModel{Slogan="Creativity Has no Limits",BlogView=pages};
+                   videos= new VideoCollectionViewModel{Slogan="Creativity Has no Limits",VideoView=videolist};
                    services= new ServiceCollectionViewModel{Slogan="Creativity Has no Limits",ServiceView=servicelist};
                    portfolios= new PortfolioCollectionViewModel{Slogan="Creativity Has no Limits",WorksCompleted=20,AwardsWon=4,TotalClients=9,YearsOfExperience=12, Portfolio=portfoliolist};
             
@@ -190,9 +251,9 @@ namespace gtbweb.Services
 
         public class DatabaseService: IDatabaseService
         {
-            private readonly BlogDbContext  _theContext;
+            private readonly VideoDbContext  _theContext;
 
-            public DatabaseService(BlogDbContext _context )
+            public DatabaseService(VideoDbContext _context )
             {
               
                    _theContext=_context;
@@ -242,6 +303,39 @@ namespace gtbweb.Services
                    query.ServiceView = querys;
                    return query;
              }
+                public List<DateArchiveViewModel> GetDateArchive(string userid)
+             {
+                   IEnumerable<BlogCollection> collections = _theContext.BlogCollections;
+                  
+                   var querys = collections.Where(s =>s.BlogPage.Profile.UserID == userid )
+                                           .Select(s=>s.BlogPage.DateArchive).Distinct()
+                                           .Select(s=> 
+                                              new DateArchiveViewModel
+                                              {  DateArchiveID=s.DateArchiveID,
+                                                 DateArchiveName =s.DateArchiveName.ToString()
+                                                 
+                                              }
+                                           ).ToList();//.FirstOrDefault<Service>();
+                  
+                   return querys;
+             }
+                public List<CategoryArchiveViewModel> GetCategoryArchive(string userid)
+             {
+                   IEnumerable<BlogCollection> collections = _theContext.BlogCollections;
+                  
+                   var querys = collections.Where(s =>s.BlogPage.Profile.UserID == userid )
+                                           .Select(s=>s.BlogPage.CategoryArchive).Distinct()
+                                           .Select(s=> 
+                                              new CategoryArchiveViewModel
+                                              {
+                                                 CategoryArchiveID=s.CategoryArchiveID,
+                                                 CategoryName =s.CategoryName.ToString()
+                                                 
+                                              }
+                                           ).ToList();//.FirstOrDefault<Service>();
+                  
+                   return querys;
+             }
               public BlogCollectionViewModel SearchBlogs(string search,string userid)
              {
                    IEnumerable<BlogCollection> collections = _theContext.BlogCollections;
@@ -261,7 +355,62 @@ namespace gtbweb.Services
                                             CommentCount=30,
                                             Text=s.Text,
                                             RecentPost=GetRecentPosts(userid),
-                                            Comments=temp.commentlist
+                                            Comments=temp.commentlist,
+                                            Archive=new ArchiveViewModel{DateArchive=GetDateArchive(userid),CategoryArchive=GetCategoryArchive(userid)}
+                                            }        
+                                            ).ToList();
+                   var query = new Seed().blogs;
+                   query.BlogView = querys;
+                   return query;
+             }
+               public BlogCollectionViewModel SearchDateArchive(int? id,string userid)
+             {
+                   IEnumerable<BlogCollection> collections = _theContext.BlogCollections;
+                   IEnumerable<Service> services = _theContext.Services;
+                   Seed temp= new Seed();
+                   var querys = collections.Where(s =>s.BlogPage.DateArchiveID== id && s.BlogPage.Profile.UserID == userid  )
+                                            .Select(s=>s.BlogPage)
+                                            .Select(s=> 
+                                            new BlogPageViewModel{ProfileID=1,
+                                            BlogPageID=s.BlogPageID,
+                                            BlogImage=s.HeaderImage,
+                                            Title=s.HeaderTitle,
+                                            FullName=s.Profile.FirstName+" "+s.Profile.LastName,
+                                            PageTag="Alex",
+                                            ReadTime=30,
+                                            TagCollection=temp.tagcollection,
+                                            CommentCount=30,
+                                            Text=s.Text,
+                                            RecentPost=GetRecentPosts(userid),
+                                            Comments=temp.commentlist,
+                                            Archive=new ArchiveViewModel{DateArchive=GetDateArchive(userid),CategoryArchive=GetCategoryArchive(userid)}
+                                            }        
+                                            ).ToList();
+                   var query = new Seed().blogs;
+                   query.BlogView = querys;
+                   return query;
+             }
+                public BlogCollectionViewModel SearchCategoryArchive(int? id,string userid)
+             {
+                   IEnumerable<BlogCollection> collections = _theContext.BlogCollections;
+                   IEnumerable<Service> services = _theContext.Services;
+                   Seed temp= new Seed();
+                   var querys = collections.Where(s =>s.BlogPage.CategoryArchiveID== id && s.BlogPage.Profile.UserID == userid  )
+                                            .Select(s=>s.BlogPage)
+                                            .Select(s=> 
+                                            new BlogPageViewModel{ProfileID=1,
+                                            BlogPageID=s.BlogPageID,
+                                            BlogImage=s.HeaderImage,
+                                            Title=s.HeaderTitle,
+                                            FullName=s.Profile.FirstName+" "+s.Profile.LastName,
+                                            PageTag="Alex",
+                                            ReadTime=30,
+                                            TagCollection=temp.tagcollection,
+                                            CommentCount=30,
+                                            Text=s.Text,
+                                            RecentPost=GetRecentPosts(userid),
+                                            Comments=temp.commentlist,
+                                            Archive=new ArchiveViewModel{DateArchive=GetDateArchive(userid),CategoryArchive=GetCategoryArchive(userid)}
                                             }        
                                             ).ToList();
                    var query = new Seed().blogs;
@@ -292,6 +441,25 @@ namespace gtbweb.Services
                                             ).ToList();
                    var query = new Seed().blogs;
                    query.BlogView = querys;
+                   return query;
+             }
+             public VideoCollectionViewModel GetVideos(string userid)
+             {
+                   IEnumerable<VideoCollection> collections = _theContext.VideoCollections;
+                   IEnumerable<Service> services = _theContext.Services;
+                   Seed temp= new Seed();
+                   var querys = collections.Where(s =>s.Profile.UserID == userid )
+                                            .Select(s=>s.Video)
+                                            .Select(s=> 
+                                            new VideoViewModel{ProfileID=1,
+                                            VideoID=s.VideoID,
+                                            VideoTitle=s.VideoTitle,
+                                            VideoFilePath=s.VideoFilePath,
+                                            VideoLength=s.VideoLength
+                                            }        
+                                            ).ToList();
+                   var query = new Seed().videos;
+                   query.VideoView = querys;
                    return query;
              }
                public BlogCollectionViewModel GetRecentBlogs(string userid)
@@ -354,6 +522,7 @@ namespace gtbweb.Services
                    pageview.Text=blogpage.Text;
                    pageview.BlogPageID=blogpage.BlogPageID;
                    pageview.RecentPost=GetRecentPosts(userid);
+                   pageview.Archive= new ArchiveViewModel{DateArchive=GetDateArchive(userid),CategoryArchive=GetCategoryArchive(userid)};
                    /* new BlogPageViewModel{ProfileID=1,
                                       BlogImage="/img/testimonial-2.jpg",
                                       Title="Alex",
@@ -413,12 +582,15 @@ namespace gtbweb.Services
               public int CreateBlogPage(int profileid)
              {
               var blogpagecontext =  _theContext.BlogPages;
+              var archivecontext=  _theContext.Archives;
               var blogcollectioncontext =  _theContext.BlogCollections;
                var timestamp=DateTime.Now;
                var blogitem = new BlogPage
                {
                   ProfileID=profileid,
                   TagID=1,
+                  DateArchiveID=1,
+                  CategoryArchiveID=1,
                   HeaderTitle="Fill Title",
                   HeaderImage="/img/testimonial-2.jpg",
                   CreationDate=timestamp,
@@ -429,14 +601,17 @@ namespace gtbweb.Services
               _theContext.SaveChanges();
               var newpage =_theContext.BlogPages.Where(s=>s.CreationDate==timestamp ).FirstOrDefault<BlogPage>();
               
+              
                  var blogCollection=new BlogCollection
                  {
                     ProfileID=profileid,
                     BlogPageID=newpage.BlogPageID,
-                    PersonalStatement="Statement"
+                    PersonalStatement="Statement",
+                    ArchiveID=1
                  };
                  blogcollectioncontext.Add(blogCollection);
                   _theContext.SaveChanges();
+
 
               return newpage.BlogPageID;
              }
